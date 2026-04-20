@@ -8,12 +8,29 @@ import type {
 const VB_W = 1240;
 const VB_H = 500;
 const PAD_L = 128;
-const PAD_R = 24;
+const PAD_R = 116;
 const ANNOT_BAND_H = 108;
 const AXIS_BAND_H = 56;
 const PLOT_TOP = ANNOT_BAND_H;
 const PLOT_BOTTOM = VB_H - AXIS_BAND_H;
 const PLOT_H = PLOT_BOTTOM - PLOT_TOP;
+
+// Right-side gutter where the LUCEUM / RES / OBITEUM track labels live.
+const LABEL_GUTTER_X = VB_W - PAD_R + 10;
+const LABEL_TICK_X1 = VB_W - PAD_R + 2;
+const LABEL_TICK_X2 = VB_W - PAD_R + 8;
+
+// Left-side RES label (Book I only has the Res track, so just one label here).
+const LEFT_LABEL_TICK_X1 = PAD_L - 2;
+const LEFT_LABEL_TICK_X2 = PAD_L - 8;
+const LEFT_LABEL_DOT_X = PAD_L - 13;
+const LEFT_LABEL_TEXT_X = PAD_L - 18;
+
+const WORLD_ACCENT: Record<WorldId, string> = {
+  Luceum: "#f0c674",
+  Res: "#c8ccd4",
+  Obiteum: "#7aa2f7",
+};
 
 const TRACK_Y: Record<WorldId, number> = {
   Luceum: PLOT_TOP + PLOT_H * 0.2,
@@ -264,27 +281,16 @@ export function WorldLineChart({ chapters }: Props) {
 
         {/* Track guides (TSOTF region) */}
         {WORLD_ORDER.map((world) => (
-          <g key={`guide-${world}`} className="track-guide">
-            <line
-              x1={forkX}
-              x2={VB_W - PAD_R}
-              y1={TRACK_Y[world]}
-              y2={TRACK_Y[world]}
-              stroke="var(--axis-grid)"
-              strokeWidth={1}
-              strokeDasharray="3 5"
-            />
-            <text
-              x={forkX + 6}
-              y={TRACK_Y[world] - 6}
-              className="track-label"
-              fill="var(--text-muted)"
-              fontSize={11}
-              letterSpacing="0.06em"
-            >
-              {world.toUpperCase()}
-            </text>
-          </g>
+          <line
+            key={`guide-${world}`}
+            x1={forkX}
+            x2={VB_W - PAD_R}
+            y1={TRACK_Y[world]}
+            y2={TRACK_Y[world]}
+            stroke="var(--axis-grid)"
+            strokeWidth={1}
+            strokeDasharray="3 5"
+          />
         ))}
 
         {/* Single Res guide across TWOTM region */}
@@ -343,6 +349,71 @@ export function WorldLineChart({ chapters }: Props) {
               strokeLinejoin="round"
               opacity={0.94}
             />
+          ))}
+        </g>
+
+        {/* Left-side RES label mirrors the right-side gutter for Book I's single track */}
+        <g className="world-labels">
+          <line
+            x1={LEFT_LABEL_TICK_X1}
+            x2={LEFT_LABEL_TICK_X2}
+            y1={TRACK_Y.Res}
+            y2={TRACK_Y.Res}
+            stroke={WORLD_ACCENT.Res}
+            strokeWidth={1.5}
+            opacity={0.85}
+          />
+          <circle
+            cx={LEFT_LABEL_DOT_X}
+            cy={TRACK_Y.Res}
+            r={3}
+            fill={WORLD_ACCENT.Res}
+          />
+          <text
+            x={LEFT_LABEL_TEXT_X}
+            y={TRACK_Y.Res + 4}
+            className="world-label"
+            textAnchor="end"
+            fill="var(--text)"
+            fontSize={12}
+            fontWeight={600}
+            letterSpacing="0.1em"
+          >
+            RES
+          </text>
+        </g>
+
+        {/* Right-side world track labels */}
+        <g className="world-labels">
+          {WORLD_ORDER.map((world) => (
+            <g key={`world-label-${world}`}>
+              <line
+                x1={LABEL_TICK_X1}
+                x2={LABEL_TICK_X2}
+                y1={TRACK_Y[world]}
+                y2={TRACK_Y[world]}
+                stroke={WORLD_ACCENT[world]}
+                strokeWidth={1.5}
+                opacity={0.85}
+              />
+              <circle
+                cx={LABEL_TICK_X2 + 5}
+                cy={TRACK_Y[world]}
+                r={3}
+                fill={WORLD_ACCENT[world]}
+              />
+              <text
+                x={LABEL_GUTTER_X + 8}
+                y={TRACK_Y[world] + 4}
+                className="world-label"
+                fill="var(--text)"
+                fontSize={12}
+                fontWeight={600}
+                letterSpacing="0.1em"
+              >
+                {world.toUpperCase()}
+              </text>
+            </g>
           ))}
         </g>
 
