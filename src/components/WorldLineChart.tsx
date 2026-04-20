@@ -593,10 +593,10 @@ export function WorldLineChart({ chapters }: Props) {
             />
             <text
               x={PAD_L - 8}
-              y={ANNOT_ROW_Y[t] + 3}
+              y={ANNOT_ROW_Y[t] + 4}
               textAnchor="end"
               fill="var(--text-muted)"
-              fontSize={9.5}
+              fontSize={12}
               letterSpacing="0.06em"
             >
               {ANNOT_LABELS[t].toUpperCase()}
@@ -732,10 +732,10 @@ export function WorldLineChart({ chapters }: Props) {
                 />
                 <text
                   x={xi}
-                  y={PLOT_BOTTOM + 14}
+                  y={PLOT_BOTTOM + 16}
                   textAnchor="middle"
                   fill="var(--text-muted)"
-                  fontSize={10}
+                  fontSize={12}
                 >
                   {bookLocal}
                 </text>
@@ -840,9 +840,9 @@ export function WorldLineChart({ chapters }: Props) {
             >
               <text
                 x={b.x}
-                y={PLOT_BOTTOM + 38}
+                y={PLOT_BOTTOM + 42}
                 textAnchor="middle"
-                fontSize={11}
+                fontSize={13}
                 letterSpacing="0.08em"
               >
                 {b.text}
