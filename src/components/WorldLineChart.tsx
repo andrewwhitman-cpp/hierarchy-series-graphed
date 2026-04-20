@@ -949,6 +949,9 @@ export function WorldLineChart({ chapters }: Props) {
               </div>
               <div className="tooltip-chapter">
                 {hoveredChapter.book === "twotm" ? "TWOTM" : "TSOTF"} · {hoveredChapter.label}
+                {hoveredChapter.book === "tsotf" && hoveredChapter.worlds.length > 0
+                  ? ` · ${hoveredChapter.worlds.join(" / ")}`
+                  : ""}
               </div>
               <div className="tooltip-label">{hoveredAnnotation.label}</div>
             </div>
