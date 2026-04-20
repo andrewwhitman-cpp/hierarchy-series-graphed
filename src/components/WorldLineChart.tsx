@@ -392,7 +392,6 @@ export function WorldLineChart({ chapters }: Props) {
                 stroke="var(--bg)"
                 strokeWidth={1.25}
               />
-              <title>{`${ANNOT_LABELS[a.type]} — ${chapters[a.chapterIdx].label}\n${a.label}`}</title>
             </g>
           );
         })}

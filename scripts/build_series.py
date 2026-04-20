@@ -127,6 +127,9 @@ DEATH_RECAP = re.compile(
 )
 
 SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
+# Break a sentence into standalone clauses so a long, comma-joined sentence
+# can be reduced to just the phrase that tripped an annotation pattern.
+CLAUSE_SPLIT = re.compile(r"\s*[,;:]\s*|\s+[—–]\s+")
 
 
 def _sentences(text: str) -> list[str]:
@@ -136,11 +139,23 @@ def _sentences(text: str) -> list[str]:
     return [s.strip() for s in SENTENCE_SPLIT.split(text) if s.strip()]
 
 
-def _trim_label(sentence: str, max_len: int = 160) -> str:
-    s = re.sub(r"\s+", " ", sentence).strip()
+def _clauses(sentence: str) -> list[str]:
+    parts = [p.strip(" .!?") for p in CLAUSE_SPLIT.split(sentence)]
+    parts = [p for p in parts if p]
+    return parts or [sentence.strip()]
+
+
+def _trim_label(sentence: str, max_len: int = 220) -> str:
+    """Collapse whitespace, strip trailing punctuation, and soft-cap at a
+    word boundary. No ellipsis: clauses already read as complete phrases,
+    and the tooltip card wraps to fit them."""
+    s = re.sub(r"\s+", " ", sentence).strip().rstrip(".,;:—–")
     if len(s) <= max_len:
         return s
-    return s[: max_len - 1].rstrip() + "\u2026"
+    cut = s.rfind(" ", 0, max_len)
+    if cut <= 0:
+        cut = max_len
+    return s[:cut].rstrip(" ,;:—–")
 
 
 def normalize_worlds(worlds: list[str], chapter_label: str) -> list[str]:
@@ -198,10 +213,20 @@ def detect_annotations(overview: str, summary: str) -> list[dict[str, str]]:
                 if ann_type == "death" and DEATH_RECAP.search(sent):
                     continue
                 for pat in patterns:
-                    if pat.search(sent):
-                        results.append({"type": ann_type, "label": _trim_label(sent)})
-                        used_types.add(ann_type)
-                        break
+                    if not pat.search(sent):
+                        continue
+                    # Prefer the clause (comma/semicolon-delimited fragment)
+                    # that actually contains the match; fall back to the whole
+                    # sentence if no clause hits (e.g. pattern straddled a
+                    # clause boundary).
+                    chosen = sent
+                    for clause in _clauses(sent):
+                        if pat.search(clause):
+                            chosen = clause
+                            break
+                    results.append({"type": ann_type, "label": _trim_label(chosen)})
+                    used_types.add(ann_type)
+                    break
 
     return results
 
