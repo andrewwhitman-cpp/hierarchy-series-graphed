@@ -575,6 +575,28 @@ export function WorldLineChart({ chapters }: Props) {
           <clipPath id="plot-clip">
             <rect x={PAD_L} y={0} width={INNER_W} height={VB_H} />
           </clipPath>
+          {/* Soft vertical glow for the book-boundary separator. */}
+          <linearGradient id="book-divider-glow" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="var(--boundary-tsotf)" stopOpacity="0" />
+            <stop offset="50%" stopColor="var(--boundary-tsotf)" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="var(--boundary-tsotf)" stopOpacity="0" />
+          </linearGradient>
+          {/* Vertical fade so the separator softens at the top and bottom. */}
+          <linearGradient id="book-divider-fade" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="#000" stopOpacity="0" />
+            <stop offset="18%" stopColor="#000" stopOpacity="1" />
+            <stop offset="82%" stopColor="#000" stopOpacity="1" />
+            <stop offset="100%" stopColor="#000" stopOpacity="0" />
+          </linearGradient>
+          <mask id="book-divider-mask">
+            <rect
+              x={0}
+              y={PLOT_TOP - 20}
+              width={VB_W}
+              height={PLOT_H + 40}
+              fill="url(#book-divider-fade)"
+            />
+          </mask>
         </defs>
 
         {/* Annotation row guides + labels (one row per annotation type).
@@ -631,17 +653,28 @@ export function WorldLineChart({ chapters }: Props) {
             strokeDasharray="3 5"
           />
 
-          {/* Book divider */}
-          <line
-            x1={forkX}
-            x2={forkX}
-            y1={PLOT_TOP - 6}
-            y2={PLOT_BOTTOM + 6}
-            stroke="var(--boundary-tsotf)"
-            strokeWidth={1.25}
-            strokeDasharray="2 4"
-            opacity={0.7}
-          />
+          {/* Book divider — a soft glow band that fades at top and bottom so
+              the boundary reads as a subtle separator rather than a busy
+              dashed line. A thin 1px core keeps it crisp. */}
+          <g mask="url(#book-divider-mask)">
+            <rect
+              x={forkX - 8}
+              y={PLOT_TOP - 20}
+              width={16}
+              height={PLOT_H + 40}
+              fill="url(#book-divider-glow)"
+              opacity={0.5}
+            />
+            <line
+              x1={forkX}
+              x2={forkX}
+              y1={PLOT_TOP - 20}
+              y2={PLOT_BOTTOM + 20}
+              stroke="var(--boundary-tsotf)"
+              strokeWidth={1}
+              opacity={0.55}
+            />
+          </g>
           {/* Strand segments: one cubic per adjacent-chapter endpoint pair */}
           <g className="strand-segments">
             {segments.map((s, idx) => (
@@ -690,15 +723,19 @@ export function WorldLineChart({ chapters }: Props) {
                 role="button"
                 aria-label={`${ANNOT_LABELS[a.type]}: ${a.label}`}
               >
-                <line
-                  x1={a.x}
-                  x2={a.x}
-                  y1={a.markerY + 4}
-                  y2={a.tickY}
-                  stroke={a.color}
-                  strokeWidth={isHovered ? 1.6 : 0.6}
-                  opacity={isHovered ? 0.95 : 0.18}
-                />
+                {/* Connector from the dot down to the strand. Only drawn on
+                    hover/focus so the default view stays uncluttered. */}
+                {isHovered ? (
+                  <line
+                    x1={a.x}
+                    x2={a.x}
+                    y1={a.markerY + 4}
+                    y2={a.tickY}
+                    stroke={a.color}
+                    strokeWidth={1.6}
+                    opacity={0.9}
+                  />
+                ) : null}
                 <circle
                   cx={a.x}
                   cy={a.markerY}
