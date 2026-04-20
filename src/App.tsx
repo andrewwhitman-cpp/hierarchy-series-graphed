@@ -11,10 +11,10 @@ export default function App() {
       <header className="header">
         <h1 className="title">Novel world line</h1>
         <p className="subtitle">
-          A single line traces each chapter's world. Book I holds a flat Res course; Book II opens
-          three tracks — Luceum, Res, Obiteum — and the line splits and rejoins as the story moves
-          between them. Markers above the chart flag deaths, new relationships, relationship
-          changes, and major or minor plot events.
+          A single line traces each chapter's world, flowing top-to-bottom through the series. Book
+          I holds a flat Res course; Book II opens three tracks — Luceum, Res, Obiteum — and the
+          line splits and rejoins as the story moves between them. Columns to the right flag
+          deaths, new relationships, relationship changes, and major or minor plot events.
         </p>
       </header>
 
