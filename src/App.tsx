@@ -11,7 +11,7 @@ export default function App() {
       <header className="header">
         <h1 className="title">Hierarchy Series Graph</h1>
         <p className="subtitle">
-          A chapter-by-chapter map of James Islington's Hierarchy series.
+          A chapter-by-chapter graph of James Islington's Hierarchy series.
         </p>
       </header>
 
