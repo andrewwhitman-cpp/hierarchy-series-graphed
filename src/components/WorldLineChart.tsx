@@ -513,19 +513,6 @@ export function WorldLineChart({ chapters }: Props) {
           <div className="tooltip-label">{hoveredAnnotation.label}</div>
         </div>
       ) : null}
-
-      <ul className="annot-legend" aria-label="Annotation types">
-        {(Object.keys(ANNOT_LABELS) as AnnotationType[]).map((t) => (
-          <li key={t} className="annot-legend-item">
-            <span
-              className="annot-legend-swatch"
-              style={{ background: ANNOT_COLORS[t] }}
-              aria-hidden="true"
-            />
-            {ANNOT_LABELS[t]}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
