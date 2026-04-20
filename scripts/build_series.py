@@ -121,17 +121,19 @@ DEATH_RECAP = re.compile(
     r"\b(?:remember(?:s|ing|ed)?|recall(?:s|ing|ed)?|"
     r"news\s+of|word\s+of|learns?\s+of|learned\s+of|hears?\s+of|"
     r"mourns?|mourning|already\s+dead|"
-    r"\w+'s\s+(?:death|funeral|murder)|"
-    r"the\s+death\s+of)\b",
+    # Accept both straight and curly apostrophes; the sparknotes JSON uses U+2019.
+    r"\w+[\u2019']s\s+(?:death|funeral|murder)|"
+    r"the\s+(?:death|funeral|murder)\s+of)\b",
     re.IGNORECASE,
 )
 
-SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
-# Break a sentence into standalone clauses so a long, comma-joined sentence
-# can be reduced to just the phrase that tripped an annotation pattern.
-CLAUSE_SPLIT = re.compile(r"\s*[,;:]\s*|\s+[—–]\s+")
-
-
+# Split before whitespace that follows a sentence terminator. Lookbehind
+# allows an optional closing quote / bracket after the terminator, so
+# `"gate." Nateo's...` splits into `"gate."` and `Nateo's...` (keeping the
+# closing quote with the preceding sentence instead of consuming it).
+SENTENCE_SPLIT = re.compile(
+    r"(?:(?<=[.!?])|(?<=[.!?][\"'\u201D\u2019\)\]]))\s+"
+)
 def _sentences(text: str) -> list[str]:
     text = text.replace("\n", " ").strip()
     if not text:
@@ -139,23 +141,61 @@ def _sentences(text: str) -> list[str]:
     return [s.strip() for s in SENTENCE_SPLIT.split(text) if s.strip()]
 
 
-def _clauses(sentence: str) -> list[str]:
-    parts = [p.strip(" .!?") for p in CLAUSE_SPLIT.split(sentence)]
-    parts = [p for p in parts if p]
-    return parts or [sentence.strip()]
+_TRAIL_JUNK = re.compile(
+    r"(?:\s+(?:and|but|or|so|yet|nor|for|then|while|if|when|as|"
+    r"though|because|since|after|before|until|unless|"
+    r"to|of|the|a|an|in|on|at|by|with|from|"
+    # Auxiliary / linking verbs also read as mid-thought at a label's end
+    # ("...tell Eidhin that the carriage is" -> "...tell Eidhin that").
+    r"is|am|are|was|were|be|been|being|has|have|had|having|"
+    r"do|does|did|done|doing|"
+    r"will|would|can|could|should|shall|might|may|must|ought|"
+    # Subordinators at the tail are similarly incomplete.
+    r"that|which|who|whom|whose))+$",
+    re.IGNORECASE,
+)
 
 
-def _trim_label(sentence: str, max_len: int = 220) -> str:
-    """Collapse whitespace, strip trailing punctuation, and soft-cap at a
-    word boundary. No ellipsis: clauses already read as complete phrases,
-    and the tooltip card wraps to fit them."""
+def _tidy_tail(s: str) -> str:
+    """Drop trailing function words / conjunctions / helpers that get left
+    behind when a sentence was cut at a comma or mid-phrase."""
+    return _TRAIL_JUNK.sub("", s).rstrip(" ,;:—–")
+
+
+def _trim_label(sentence: str, max_len: int = 260) -> str:
+    """Collapse whitespace, strip trailing punctuation and stranded
+    connectives, and soft-cap inside the budget. No ellipsis.
+
+    Priority for the cut point when the sentence is over budget:
+      1. Strong terminator in the window (period / semicolon / em-dash)
+         at any position - these always close a thought.
+      2. Colon in the upper 60% of the window (weaker boundary).
+      3. Word boundary, then tidy the tail of function words.
+      4. If tidying chewed away a large chunk of the word-boundary cut,
+         a comma break within the window produces a cleaner stop.
+    """
     s = re.sub(r"\s+", " ", sentence).strip().rstrip(".,;:—–")
+    s = _tidy_tail(s)
     if len(s) <= max_len:
         return s
+    window = s[:max_len]
+    for mark in (". ", "; ", "—", " – "):
+        idx = window.rfind(mark)
+        if idx > 0:
+            return _tidy_tail(s[:idx].rstrip(" ,;:—–"))
+    idx_colon = window.rfind(": ")
+    if idx_colon >= int(max_len * 0.4):
+        return _tidy_tail(s[:idx_colon].rstrip(" ,;:—–"))
     cut = s.rfind(" ", 0, max_len)
     if cut <= 0:
         cut = max_len
-    return s[:cut].rstrip(" ,;:—–")
+    word_end = _tidy_tail(s[:cut].rstrip(" ,;:—–"))
+    idx_comma = window.rfind(", ")
+    # If tidying shaved off >15% of the word-boundary cut, the sentence
+    # ended on a weak phrase - prefer the earlier comma break instead.
+    if idx_comma > 0 and len(word_end) < cut * 0.85:
+        return _tidy_tail(s[:idx_comma].rstrip(" ,;:—–"))
+    return word_end
 
 
 def normalize_worlds(worlds: list[str], chapter_label: str) -> list[str]:
@@ -215,16 +255,13 @@ def detect_annotations(overview: str, summary: str) -> list[dict[str, str]]:
                 for pat in patterns:
                     if not pat.search(sent):
                         continue
-                    # Prefer the clause (comma/semicolon-delimited fragment)
-                    # that actually contains the match; fall back to the whole
-                    # sentence if no clause hits (e.g. pattern straddled a
-                    # clause boundary).
-                    chosen = sent
-                    for clause in _clauses(sent):
-                        if pat.search(clause):
-                            chosen = clause
-                            break
-                    results.append({"type": ann_type, "label": _trim_label(chosen)})
+                    # Use the full sentence - it is grammatically complete
+                    # by construction. Smart-trim (see _trim_label) handles
+                    # the occasional sentence that exceeds the label budget
+                    # by cutting at the nearest natural punctuation break,
+                    # which preserves a complete thought much more reliably
+                    # than clause splitting on commas.
+                    results.append({"type": ann_type, "label": _trim_label(sent)})
                     used_types.add(ann_type)
                     break
 
