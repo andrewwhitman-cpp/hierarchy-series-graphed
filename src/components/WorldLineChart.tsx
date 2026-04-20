@@ -292,7 +292,40 @@ export function WorldLineChart({ chapters }: Props) {
   }, [staticData, xFor]);
 
   const { segments, forkX, forkIdx, annotations } = geometry;
-  const twotmLastX = forkIdx > 0 ? xFor(forkIdx - 1) : xFor(chapters.length - 1);
+
+  // Book ranges (inclusive chapter indices).
+  const bookI = { start: 0, end: forkIdx > 0 ? forkIdx - 1 : chapters.length - 1 };
+  const bookII = { start: forkIdx > 0 ? forkIdx : 0, end: chapters.length - 1 };
+
+  // Determine which (if any) book the current view exactly matches, for
+  // highlighting the active book-title button.
+  const activeBook: "I" | "II" | null = (() => {
+    const n = chapters.length;
+    if (n < 2) return null;
+    const step = (INNER_W * zoom) / (n - 1);
+    if (step <= 0) return null;
+    const visStart = panOffset / step;
+    const visEnd = (panOffset + INNER_W) / step;
+    const tol = 0.25;
+    if (
+      Math.abs(visStart - bookI.start) < tol &&
+      Math.abs(visEnd - bookI.end) < tol
+    )
+      return "I";
+    if (
+      Math.abs(visStart - bookII.start) < tol &&
+      Math.abs(visEnd - bookII.end) < tol
+    )
+      return "II";
+    return null;
+  })();
+
+  // Fixed x positions for book-title buttons — always visible, proportional to
+  // each book's share of the total chapter count.
+  const bookILabelX =
+    PAD_L + ((bookI.start + bookI.end + 1) / (2 * chapters.length)) * INNER_W;
+  const bookIILabelX =
+    PAD_L + ((bookII.start + bookII.end + 1) / (2 * chapters.length)) * INNER_W;
 
   const hoveredAnnotation = hover
     ? chapters[hover.chapterIdx].annotations[hover.annotationIdx]
@@ -405,6 +438,21 @@ export function WorldLineChart({ chapters }: Props) {
   };
   const zoomIn = () => zoomAtSvgX(VB_W / 2, 1.4);
   const zoomOut = () => zoomAtSvgX(VB_W / 2, 1 / 1.4);
+
+  // Snap the view so that chapters [i1..i2] exactly span the plot width.
+  const fitRange = useCallback(
+    (i1: number, i2: number) => {
+      const n = chapters.length;
+      if (n < 2 || i2 <= i1) return;
+      const span = i2 - i1;
+      const newZoom = clamp((n - 1) / span, MIN_ZOOM, MAX_ZOOM);
+      const step = (INNER_W * newZoom) / (n - 1);
+      const newPan = clamp(step * i1, 0, INNER_W * (newZoom - 1));
+      setZoom(newZoom);
+      setPanOffset(newPan);
+    },
+    [chapters.length]
+  );
 
   const isZoomed = zoom > 1.001;
   const dragging = dragRef.current != null;
@@ -594,27 +642,6 @@ export function WorldLineChart({ chapters }: Props) {
             strokeDasharray="2 4"
             opacity={0.7}
           />
-          <text
-            x={(xFor(0) + twotmLastX) / 2}
-            y={PLOT_BOTTOM + 38}
-            textAnchor="middle"
-            fill="var(--text-muted)"
-            fontSize={11}
-            letterSpacing="0.08em"
-          >
-            BOOK I — THE WILL OF THE MANY
-          </text>
-          <text
-            x={(forkX + xFor(chapters.length - 1)) / 2}
-            y={PLOT_BOTTOM + 38}
-            textAnchor="middle"
-            fill="var(--text-muted)"
-            fontSize={11}
-            letterSpacing="0.08em"
-          >
-            BOOK II — THE STRENGTH OF THE FEW
-          </text>
-
           {/* Strand segments: one cubic per adjacent-chapter endpoint pair */}
           <g className="strand-segments">
             {segments.map((s, idx) => (
@@ -788,6 +815,48 @@ export function WorldLineChart({ chapters }: Props) {
                 letterSpacing="0.1em"
               >
                 {world.toUpperCase()}
+              </text>
+            </g>
+          ))}
+        </g>
+
+        {/* Book-title buttons. Click to snap the view to that book's chapters.
+            Positioned outside the plot clip so they stay visible at any zoom. */}
+        <g className="book-labels">
+          {([
+            { id: "I", x: bookILabelX, text: "BOOK I — THE WILL OF THE MANY", range: bookI },
+            { id: "II", x: bookIILabelX, text: "BOOK II — THE STRENGTH OF THE FEW", range: bookII },
+          ] as const).map((b) => (
+            <g
+              key={`book-label-${b.id}`}
+              className={`book-label${activeBook === b.id ? " is-active" : ""}`}
+              onPointerDown={(e) => {
+                // Prevent the svg-level drag-to-pan handler from capturing the
+                // pointer; otherwise the subsequent click never reaches us.
+                e.stopPropagation();
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                fitRange(b.range.start, b.range.end);
+              }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  fitRange(b.range.start, b.range.end);
+                }
+              }}
+              aria-label={`Fit ${b.text} to view`}
+            >
+              <text
+                x={b.x}
+                y={PLOT_BOTTOM + 38}
+                textAnchor="middle"
+                fontSize={11}
+                letterSpacing="0.08em"
+              >
+                {b.text}
               </text>
             </g>
           ))}

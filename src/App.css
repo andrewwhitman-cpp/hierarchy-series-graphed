@@ -181,6 +181,37 @@ body {
   stroke-width: 2;
 }
 
+.book-label {
+  cursor: pointer;
+  outline: none;
+}
+
+.book-label text {
+  fill: var(--text-muted);
+  transition: fill 120ms ease;
+  /* Give the clickable target some vertical slack so the padded text is easier
+     to hit without altering visual layout. */
+  paint-order: stroke;
+  stroke: transparent;
+  stroke-width: 18;
+  stroke-linejoin: round;
+}
+
+.book-label:hover text {
+  fill: var(--text);
+}
+
+.book-label.is-active text {
+  fill: var(--text);
+  font-weight: 600;
+}
+
+.book-label:focus-visible text {
+  fill: var(--text);
+  stroke: var(--split-line);
+  stroke-width: 2;
+}
+
 .annot-legend {
   list-style: none;
   padding: 0;
