@@ -496,22 +496,40 @@ export function WorldLineChart({ chapters }: Props) {
       </svg>
 
       {hover && hoveredAnnotation && hoveredChapter ? (
-        <div
-          className="chart-tooltip"
-          style={{
-            left: `${(hover.x / VB_W) * 100}%`,
-            top: `${(hover.y / VB_H) * 100}%`,
-          }}
-          role="status"
-        >
-          <div className="tooltip-type" style={{ color: ANNOT_COLORS[hoveredAnnotation.type] }}>
-            {ANNOT_LABELS[hoveredAnnotation.type]}
-          </div>
-          <div className="tooltip-chapter">
-            {hoveredChapter.book === "twotm" ? "TWOTM" : "TSOTF"} · {hoveredChapter.label}
-          </div>
-          <div className="tooltip-label">{hoveredAnnotation.label}</div>
-        </div>
+        (() => {
+          // Flip tooltip below the marker when the marker is high in the annotation
+          // band (tooltip would otherwise be clipped off the top of the page).
+          const flipBelow = hover.y < ANNOT_BAND_H;
+          // Shift tooltip leftward / rightward when near a horizontal edge so
+          // the entire tooltip stays within the chart container.
+          const xFrac = hover.x / VB_W;
+          const translateX =
+            xFrac > 0.78
+              ? "calc(-100% + 16px)"
+              : xFrac < 0.12
+                ? "-16px"
+                : "-50%";
+          const translateY = flipBelow ? "14px" : "calc(-100% - 10px)";
+          return (
+            <div
+              className="chart-tooltip"
+              style={{
+                left: `${xFrac * 100}%`,
+                top: `${(hover.y / VB_H) * 100}%`,
+                transform: `translate(${translateX}, ${translateY})`,
+              }}
+              role="status"
+            >
+              <div className="tooltip-type" style={{ color: ANNOT_COLORS[hoveredAnnotation.type] }}>
+                {ANNOT_LABELS[hoveredAnnotation.type]}
+              </div>
+              <div className="tooltip-chapter">
+                {hoveredChapter.book === "twotm" ? "TWOTM" : "TSOTF"} · {hoveredChapter.label}
+              </div>
+              <div className="tooltip-label">{hoveredAnnotation.label}</div>
+            </div>
+          );
+        })()
       ) : null}
     </div>
   );

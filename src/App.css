@@ -95,13 +95,13 @@ body {
 
 .chart-tooltip {
   position: absolute;
-  transform: translate(-50%, calc(-100% - 10px));
+  /* transform is set inline per-hover so the tooltip flips away from edges. */
   background: var(--panel);
   border: 1px solid var(--split-line);
   border-radius: 8px;
   padding: 0.5rem 0.65rem;
   min-width: 200px;
-  max-width: 340px;
+  max-width: 300px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   pointer-events: none;
   z-index: 2;
