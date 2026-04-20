@@ -1,5 +1,5 @@
 {
-  "_comment": "Manual world assignments for TSOTF (Book II). Valid worlds: 'Res', 'Luceum', 'Obiteum'. Edit the 'worlds' array on each chapter; order does not matter (rendering order is fixed Luceum -> Res -> Obiteum). Re-run scripts/build_series.py after edits.",
+  "_comment": "Manual world assignments for TSOTF (Book II). Valid worlds: 'Res', 'Luceum', 'Obiteum'. Edit the 'worlds' array on each chapter; order does not matter (rendering order is fixed Luceum -> Res -> Obiteum). content/viz/series.json is the source of truth for the rendered chart and is edited manually.",
   "chapters": [
     {
       "index": 1,
