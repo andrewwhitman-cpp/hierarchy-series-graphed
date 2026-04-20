@@ -70,6 +70,105 @@ body {
   height: auto;
   max-height: calc(100vh - 120px);
   display: block;
+  touch-action: none;
+  user-select: none;
+}
+
+.world-line-chart.is-zoomed {
+  cursor: grab;
+}
+
+.world-line-chart.is-zoomed.is-dragging,
+.world-line-chart.is-zoomed:active {
+  cursor: grabbing;
+}
+
+.chart-controls {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  background: rgba(18, 21, 28, 0.82);
+  border: 1px solid var(--split-line);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  z-index: 3;
+  font-size: 0.75rem;
+}
+
+.chart-ctrl-btn {
+  appearance: none;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 2px 8px;
+  min-width: 26px;
+  height: 24px;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.chart-ctrl-btn:hover:not(:disabled) {
+  background: rgba(139, 145, 156, 0.15);
+  border-color: var(--split-line);
+}
+
+.chart-ctrl-btn:disabled {
+  color: var(--text-muted);
+  opacity: 0.55;
+  cursor: default;
+}
+
+.chart-ctrl-reset {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 2px 10px;
+}
+
+.chart-zoom-indicator {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 3.5ch;
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+.chart-scrollbar {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  margin-top: 4px;
+  background: rgba(139, 145, 156, 0.08);
+  border-radius: 999px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.chart-scrollbar-thumb {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  min-width: 18px;
+  background: rgba(232, 234, 239, 0.38);
+  border-radius: 999px;
+  cursor: grab;
+  transition: background-color 120ms ease;
+}
+
+.chart-scrollbar-thumb:hover {
+  background: rgba(232, 234, 239, 0.58);
+}
+
+.chart-scrollbar-thumb:active {
+  cursor: grabbing;
+  background: rgba(232, 234, 239, 0.7);
 }
 
 .annotation {

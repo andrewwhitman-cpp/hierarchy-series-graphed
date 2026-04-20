@@ -1,4 +1,11 @@
-import { useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import type {
   AnnotationType,
   ChapterPoint,
@@ -26,6 +33,11 @@ const LEFT_LABEL_TICK_X2 = PAD_L - 8;
 const LEFT_LABEL_DOT_X = PAD_L - 13;
 const LEFT_LABEL_TEXT_X = PAD_L - 18;
 
+const INNER_W = VB_W - PAD_L - PAD_R;
+
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 20;
+
 const WORLD_ACCENT: Record<WorldId, string> = {
   Luceum: "#f0c674",
   Res: "#c8ccd4",
@@ -49,7 +61,7 @@ const ANNOT_COLORS: Record<AnnotationType, string> = {
 };
 
 const ANNOT_LABELS: Record<AnnotationType, string> = {
-  death: "Major Death",
+  death: "Death",
   breakthrough: "Breakthrough",
   reveal: "Reveal",
   ally_or_betrayal: "Ally / betrayal",
@@ -154,21 +166,28 @@ function pairEndpoints(aWorlds: WorldId[], bWorlds: WorldId[]): [number, number]
   return pairs;
 }
 
-function buildSegments(chapters: ChapterPoint[], xFor: (i: number) => number): Segment[] {
-  const segments: Segment[] = [];
+interface SegmentPair {
+  /** Index of chapter A */
+  i: number;
+  /** Y on chapter A */
+  y1: number;
+  /** Y on chapter A+1 */
+  y2: number;
+}
+
+function buildSegmentPairs(chapters: ChapterPoint[]): SegmentPair[] {
+  const pairs: SegmentPair[] = [];
   const ys = chapterWorldYs(chapters);
   for (let i = 0; i < chapters.length - 1; i++) {
     const a = chapters[i];
     const b = chapters[i + 1];
     if (a.worlds.length === 0 || b.worlds.length === 0) continue;
-    const x1 = xFor(i);
-    const x2 = xFor(i + 1);
-    const pairs = pairEndpoints(a.worlds, b.worlds);
-    for (const [ai, bi] of pairs) {
-      segments.push({ x1, y1: ys[i][ai], x2, y2: ys[i + 1][bi] });
+    const pp = pairEndpoints(a.worlds, b.worlds);
+    for (const [ai, bi] of pp) {
+      pairs.push({ i, y1: ys[i][ai], y2: ys[i + 1][bi] });
     }
   }
-  return segments;
+  return pairs;
 }
 
 function segmentPath(s: Segment): string {
@@ -190,42 +209,51 @@ interface HoverState {
   y: number;
 }
 
+function clamp(v: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, v));
+}
+
 export function WorldLineChart({ chapters }: Props) {
   const [hover, setHover] = useState<HoverState | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const [panOffset, setPanOffset] = useState(0);
 
-  const geometry = useMemo(() => {
-    const n = chapters.length;
-    const innerW = VB_W - PAD_L - PAD_R;
-    const step = n > 1 ? innerW / (n - 1) : 0;
-    const xFor = (i: number) => PAD_L + step * i;
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const dragRef = useRef<{
+    pointerId: number;
+    startClientX: number;
+    startPan: number;
+    moved: boolean;
+  } | null>(null);
 
-    const segments = buildSegments(chapters, xFor);
+  // Max pan in svg user-units. Clamp panOffset whenever zoom decreases.
+  const maxPan = INNER_W * (zoom - 1);
+  useEffect(() => {
+    setPanOffset((p) => clamp(p, 0, INNER_W * (zoom - 1)));
+  }, [zoom]);
 
+  // Static chapter geometry (independent of zoom/pan).
+  const staticData = useMemo(() => {
+    const segmentPairs = buildSegmentPairs(chapters);
+    const topYs = chapters.map(topStrandY);
     const forkIdx = chapters.findIndex((c) => c.book === "tsotf");
-    const forkX = forkIdx > 0 ? (xFor(forkIdx - 1) + xFor(forkIdx)) / 2 : xFor(0);
 
-    const annotations: {
+    const annotationSpecs: {
       chapterIdx: number;
       annotationIdx: number;
-      x: number;
       markerY: number;
       tickY: number;
       color: string;
       label: string;
       type: AnnotationType;
     }[] = [];
-
     chapters.forEach((ch, ci) => {
       ch.annotations.forEach((ann, ai) => {
-        const x = xFor(ci);
-        const tickY = topStrandY(ch);
-        const markerY = ANNOT_ROW_Y[ann.type];
-        annotations.push({
+        annotationSpecs.push({
           chapterIdx: ci,
           annotationIdx: ai,
-          x,
-          markerY,
-          tickY,
+          markerY: ANNOT_ROW_Y[ann.type],
+          tickY: topYs[ci],
           color: ANNOT_COLORS[ann.type],
           label: ann.label,
           type: ann.type,
@@ -233,11 +261,37 @@ export function WorldLineChart({ chapters }: Props) {
       });
     });
 
-    return { xFor, segments, forkX, forkIdx, annotations };
+    return { segmentPairs, forkIdx, annotationSpecs };
   }, [chapters]);
 
-  const { segments, forkX, forkIdx, annotations, xFor } = geometry;
+  // xFor depends on zoom + pan.
+  const xFor = useCallback(
+    (i: number) => {
+      const n = chapters.length;
+      const step = n > 1 ? (INNER_W * zoom) / (n - 1) : 0;
+      return PAD_L + step * i - panOffset;
+    },
+    [chapters.length, zoom, panOffset]
+  );
 
+  const geometry = useMemo(() => {
+    const { segmentPairs, forkIdx, annotationSpecs } = staticData;
+    const segments: Segment[] = segmentPairs.map((p) => ({
+      x1: xFor(p.i),
+      y1: p.y1,
+      x2: xFor(p.i + 1),
+      y2: p.y2,
+    }));
+    const forkX =
+      forkIdx > 0 ? (xFor(forkIdx - 1) + xFor(forkIdx)) / 2 : xFor(0);
+    const annotations = annotationSpecs.map((a) => ({
+      ...a,
+      x: xFor(a.chapterIdx),
+    }));
+    return { segments, forkX, forkIdx, annotations };
+  }, [staticData, xFor]);
+
+  const { segments, forkX, forkIdx, annotations } = geometry;
   const twotmLastX = forkIdx > 0 ? xFor(forkIdx - 1) : xFor(chapters.length - 1);
 
   const hoveredAnnotation = hover
@@ -245,16 +299,238 @@ export function WorldLineChart({ chapters }: Props) {
     : null;
   const hoveredChapter = hover ? chapters[hover.chapterIdx] : null;
 
+  // Convert a client-x coordinate to svg user-units (viewBox x).
+  const clientXToSvgX = useCallback((clientX: number) => {
+    const svg = svgRef.current;
+    if (!svg) return clientX;
+    const rect = svg.getBoundingClientRect();
+    if (rect.width === 0) return clientX;
+    return ((clientX - rect.left) * VB_W) / rect.width;
+  }, []);
+
+  const zoomAtSvgX = useCallback(
+    (svgX: number, factor: number) => {
+      setZoom((oldZoom) => {
+        const newZoom = clamp(oldZoom * factor, MIN_ZOOM, MAX_ZOOM);
+        if (newZoom === oldZoom) return oldZoom;
+        setPanOffset((oldPan) => {
+          // Keep the content point under svgX anchored.
+          const pivot = clamp(svgX, PAD_L, VB_W - PAD_R);
+          const contentX = pivot - PAD_L + oldPan;
+          const scale = newZoom / oldZoom;
+          const newContentX = contentX * scale;
+          const newPan = newContentX - (pivot - PAD_L);
+          return clamp(newPan, 0, INNER_W * (newZoom - 1));
+        });
+        return newZoom;
+      });
+    },
+    []
+  );
+
+  // Wheel: ctrl/meta or deltaY-dominant = zoom; deltaX or shift = pan.
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const handler = (e: WheelEvent) => {
+      const horizontalIntent =
+        e.shiftKey ||
+        (!e.ctrlKey && !e.metaKey && Math.abs(e.deltaX) > Math.abs(e.deltaY));
+      e.preventDefault();
+      if (horizontalIntent) {
+        const delta = e.shiftKey && e.deltaX === 0 ? e.deltaY : e.deltaX;
+        setPanOffset((p) =>
+          clamp(p + delta * 1.2, 0, INNER_W * (zoom - 1))
+        );
+      } else {
+        const svgX = clientXToSvgX(e.clientX);
+        // Normalize across mouse / trackpad.
+        const factor = Math.exp(-e.deltaY * 0.0018);
+        zoomAtSvgX(svgX, factor);
+      }
+    };
+    svg.addEventListener("wheel", handler, { passive: false });
+    return () => {
+      svg.removeEventListener("wheel", handler);
+    };
+  }, [clientXToSvgX, zoomAtSvgX, zoom]);
+
+  // Drag-to-pan.
+  const onPointerDown = (e: ReactPointerEvent<SVGSVGElement>) => {
+    if (e.button !== 0) return;
+    if (zoom <= 1) return;
+    const svg = svgRef.current;
+    if (!svg) return;
+    svg.setPointerCapture(e.pointerId);
+    dragRef.current = {
+      pointerId: e.pointerId,
+      startClientX: e.clientX,
+      startPan: panOffset,
+      moved: false,
+    };
+  };
+
+  const onPointerMove = (e: ReactPointerEvent<SVGSVGElement>) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    const svg = svgRef.current;
+    if (!svg) return;
+    const rect = svg.getBoundingClientRect();
+    if (rect.width === 0) return;
+    const dxClient = e.clientX - drag.startClientX;
+    if (Math.abs(dxClient) > 3) drag.moved = true;
+    const dxSvg = (dxClient * VB_W) / rect.width;
+    setPanOffset(clamp(drag.startPan - dxSvg, 0, INNER_W * (zoom - 1)));
+  };
+
+  const endDrag = (e: ReactPointerEvent<SVGSVGElement>) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    const svg = svgRef.current;
+    try {
+      svg?.releasePointerCapture(drag.pointerId);
+    } catch {
+      // ignore
+    }
+    dragRef.current = null;
+    // Prevent click-through on the annotation under the cursor after a real drag.
+    if (drag.moved) {
+      e.preventDefault();
+    }
+  };
+
+  const resetView = () => {
+    setZoom(1);
+    setPanOffset(0);
+  };
+  const zoomIn = () => zoomAtSvgX(VB_W / 2, 1.4);
+  const zoomOut = () => zoomAtSvgX(VB_W / 2, 1 / 1.4);
+
+  const isZoomed = zoom > 1.001;
+  const dragging = dragRef.current != null;
+
+  // Scrollbar thumb geometry (percentages of the track).
+  const thumbWidthPct = 100 / zoom;
+  const panFrac = maxPan > 0 ? panOffset / maxPan : 0;
+  const thumbLeftPct = panFrac * (100 - thumbWidthPct);
+
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const thumbDragRef = useRef<{
+    pointerId: number;
+    startClientX: number;
+    startPanFrac: number;
+    trackPx: number;
+  } | null>(null);
+
+  const onThumbPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (!track) return;
+    e.stopPropagation();
+    (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+    thumbDragRef.current = {
+      pointerId: e.pointerId,
+      startClientX: e.clientX,
+      startPanFrac: panFrac,
+      trackPx: track.getBoundingClientRect().width,
+    };
+  };
+
+  const onThumbPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const d = thumbDragRef.current;
+    if (!d) return;
+    const available = d.trackPx * (1 - thumbWidthPct / 100);
+    if (available <= 0) return;
+    const dx = e.clientX - d.startClientX;
+    const newFrac = clamp(d.startPanFrac + dx / available, 0, 1);
+    setPanOffset(newFrac * INNER_W * (zoom - 1));
+  };
+
+  const onThumbPointerUp = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const d = thumbDragRef.current;
+    if (!d) return;
+    try {
+      (e.currentTarget as HTMLDivElement).releasePointerCapture(d.pointerId);
+    } catch {
+      // ignore
+    }
+    thumbDragRef.current = null;
+  };
+
+  // Click on the scrollbar track to page the view.
+  const onTrackPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
+    const clickPct = ((e.clientX - rect.left) / rect.width) * 100;
+    // Determine if click is before or after the thumb.
+    const thumbCenter = thumbLeftPct + thumbWidthPct / 2;
+    const direction = clickPct < thumbCenter ? -1 : 1;
+    const pageFrac = thumbWidthPct / 100; // one viewport width
+    const currentFrac = panFrac;
+    const next = clamp(currentFrac + direction * pageFrac, 0, 1);
+    setPanOffset(next * INNER_W * (zoom - 1));
+  };
+
   return (
     <div className="chart-wrap">
+      <div className="chart-controls" role="toolbar" aria-label="Timeline zoom">
+        <button
+          type="button"
+          className="chart-ctrl-btn"
+          onClick={zoomOut}
+          disabled={zoom <= MIN_ZOOM + 0.001}
+          aria-label="Zoom out"
+          title="Zoom out"
+        >
+          −
+        </button>
+        <span className="chart-zoom-indicator" aria-live="polite">
+          {Math.round(zoom * 100)}%
+        </span>
+        <button
+          type="button"
+          className="chart-ctrl-btn"
+          onClick={zoomIn}
+          disabled={zoom >= MAX_ZOOM - 0.001}
+          aria-label="Zoom in"
+          title="Zoom in"
+        >
+          +
+        </button>
+        <button
+          type="button"
+          className="chart-ctrl-btn chart-ctrl-reset"
+          onClick={resetView}
+          disabled={!isZoomed && panOffset === 0}
+          aria-label="Reset view"
+          title="Reset view"
+        >
+          Reset
+        </button>
+      </div>
+
       <svg
-        className="world-line-chart"
+        ref={svgRef}
+        className={`world-line-chart${isZoomed ? " is-zoomed" : ""}${
+          dragging ? " is-dragging" : ""
+        }`}
         viewBox={`0 0 ${VB_W} ${VB_H}`}
         preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label="Novel world-line chart"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
       >
-        {/* Annotation row guides + labels (one row per annotation type) */}
+        <defs>
+          <clipPath id="plot-clip">
+            <rect x={PAD_L} y={0} width={INNER_W} height={VB_H} />
+          </clipPath>
+        </defs>
+
+        {/* Annotation row guides + labels (one row per annotation type).
+            These stay fixed regardless of zoom/pan. */}
         {ANNOT_ROW_ORDER.map((t) => (
           <g key={`annot-row-${t}`} className="annot-row">
             <line
@@ -280,77 +556,176 @@ export function WorldLineChart({ chapters }: Props) {
           </g>
         ))}
 
-        {/* Track guides (TSOTF region) */}
-        {WORLD_ORDER.map((world) => (
+        {/* Everything inside the plot region is zoom/pan-aware and clipped. */}
+        <g clipPath="url(#plot-clip)">
+          {/* Track guides (TSOTF region) */}
+          {WORLD_ORDER.map((world) => (
+            <line
+              key={`guide-${world}`}
+              x1={forkX}
+              x2={VB_W - PAD_R}
+              y1={TRACK_Y[world]}
+              y2={TRACK_Y[world]}
+              stroke="var(--axis-grid)"
+              strokeWidth={1}
+              strokeDasharray="3 5"
+            />
+          ))}
+
+          {/* Single Res guide across TWOTM region */}
           <line
-            key={`guide-${world}`}
-            x1={forkX}
-            x2={VB_W - PAD_R}
-            y1={TRACK_Y[world]}
-            y2={TRACK_Y[world]}
+            x1={PAD_L}
+            x2={forkX}
+            y1={TRACK_Y.Res}
+            y2={TRACK_Y.Res}
             stroke="var(--axis-grid)"
             strokeWidth={1}
             strokeDasharray="3 5"
           />
-        ))}
 
-        {/* Single Res guide across TWOTM region */}
-        <line
-          x1={PAD_L}
-          x2={forkX}
-          y1={TRACK_Y.Res}
-          y2={TRACK_Y.Res}
-          stroke="var(--axis-grid)"
-          strokeWidth={1}
-          strokeDasharray="3 5"
-        />
+          {/* Book divider */}
+          <line
+            x1={forkX}
+            x2={forkX}
+            y1={PLOT_TOP - 6}
+            y2={PLOT_BOTTOM + 6}
+            stroke="var(--boundary-tsotf)"
+            strokeWidth={1.25}
+            strokeDasharray="2 4"
+            opacity={0.7}
+          />
+          <text
+            x={(xFor(0) + twotmLastX) / 2}
+            y={PLOT_BOTTOM + 38}
+            textAnchor="middle"
+            fill="var(--text-muted)"
+            fontSize={11}
+            letterSpacing="0.08em"
+          >
+            BOOK I — THE WILL OF THE MANY
+          </text>
+          <text
+            x={(forkX + xFor(chapters.length - 1)) / 2}
+            y={PLOT_BOTTOM + 38}
+            textAnchor="middle"
+            fill="var(--text-muted)"
+            fontSize={11}
+            letterSpacing="0.08em"
+          >
+            BOOK II — THE STRENGTH OF THE FEW
+          </text>
 
-        {/* Book divider */}
-        <line
-          x1={forkX}
-          x2={forkX}
-          y1={PLOT_TOP - 6}
-          y2={PLOT_BOTTOM + 6}
-          stroke="var(--boundary-tsotf)"
-          strokeWidth={1.25}
-          strokeDasharray="2 4"
-          opacity={0.7}
-        />
-        <text
-          x={(PAD_L + twotmLastX) / 2}
-          y={PLOT_BOTTOM + 38}
-          textAnchor="middle"
-          fill="var(--text-muted)"
-          fontSize={11}
-          letterSpacing="0.08em"
-        >
-          BOOK I — THE WILL OF THE MANY
-        </text>
-        <text
-          x={(forkX + (VB_W - PAD_R)) / 2}
-          y={PLOT_BOTTOM + 38}
-          textAnchor="middle"
-          fill="var(--text-muted)"
-          fontSize={11}
-          letterSpacing="0.08em"
-        >
-          BOOK II — THE STRENGTH OF THE FEW
-        </text>
+          {/* Strand segments: one cubic per adjacent-chapter endpoint pair */}
+          <g className="strand-segments">
+            {segments.map((s, idx) => (
+              <path
+                key={`seg-${idx}`}
+                d={segmentPath(s)}
+                fill="none"
+                stroke={STRAND_COLOR}
+                strokeWidth={STRAND_WIDTH}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity={0.94}
+              />
+            ))}
+          </g>
 
-        {/* Strand segments: one cubic per adjacent-chapter endpoint pair */}
-        <g className="strand-segments">
-          {segments.map((s, idx) => (
-            <path
-              key={`seg-${idx}`}
-              d={segmentPath(s)}
-              fill="none"
-              stroke={STRAND_COLOR}
-              strokeWidth={STRAND_WIDTH}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              opacity={0.94}
-            />
-          ))}
+          {/* Annotation ticks + markers */}
+          {annotations.map((a) => {
+            const isHovered =
+              hover?.chapterIdx === a.chapterIdx &&
+              hover?.annotationIdx === a.annotationIdx;
+            return (
+              <g
+                key={`ann-${a.chapterIdx}-${a.annotationIdx}`}
+                className="annotation"
+                onMouseEnter={() => {
+                  if (dragRef.current?.moved) return;
+                  setHover({
+                    chapterIdx: a.chapterIdx,
+                    annotationIdx: a.annotationIdx,
+                    x: a.x,
+                    y: a.markerY,
+                  });
+                }}
+                onMouseLeave={() => setHover(null)}
+                onFocus={() =>
+                  setHover({
+                    chapterIdx: a.chapterIdx,
+                    annotationIdx: a.annotationIdx,
+                    x: a.x,
+                    y: a.markerY,
+                  })
+                }
+                onBlur={() => setHover(null)}
+                tabIndex={0}
+                role="button"
+                aria-label={`${ANNOT_LABELS[a.type]}: ${a.label}`}
+              >
+                <line
+                  x1={a.x}
+                  x2={a.x}
+                  y1={a.markerY + 4}
+                  y2={a.tickY}
+                  stroke={a.color}
+                  strokeWidth={isHovered ? 1.6 : 0.6}
+                  opacity={isHovered ? 0.95 : 0.18}
+                />
+                <circle
+                  cx={a.x}
+                  cy={a.markerY}
+                  r={isHovered ? 5.5 : 4}
+                  fill={a.color}
+                  stroke="var(--bg)"
+                  strokeWidth={1.25}
+                />
+              </g>
+            );
+          })}
+
+          {/* Axis bottom: sparse chapter ticks. When zoomed in, show them more
+              densely so a user can orient themselves within a book. */}
+          {(() => {
+            const strideBase = Math.max(
+              1,
+              Math.round(
+                (chapters.length / 40) / Math.max(1, Math.log2(zoom + 1))
+              )
+            );
+            return chapters.map((_ch, i) => {
+              const show =
+                i === 0 ||
+                i === chapters.length - 1 ||
+                i === forkIdx ||
+                (i + 1) % strideBase === 0;
+              if (!show) return null;
+              const xi = xFor(i);
+              // Drop ticks whose X falls outside the plot region.
+              if (xi < PAD_L - 1 || xi > VB_W - PAD_R + 1) return null;
+              return (
+                <g key={`tick-${i}`}>
+                  <line
+                    x1={xi}
+                    x2={xi}
+                    y1={PLOT_BOTTOM}
+                    y2={PLOT_BOTTOM + 4}
+                    stroke="var(--axis-tick)"
+                    strokeWidth={1}
+                  />
+                  <text
+                    x={xi}
+                    y={PLOT_BOTTOM + 14}
+                    textAnchor="middle"
+                    fill="var(--text-muted)"
+                    fontSize={10}
+                  >
+                    {i + 1}
+                  </text>
+                </g>
+              );
+            });
+          })()}
         </g>
 
         {/* Left-side RES label mirrors the right-side gutter for Book I's single track */}
@@ -417,84 +792,33 @@ export function WorldLineChart({ chapters }: Props) {
             </g>
           ))}
         </g>
-
-        {/* Annotation ticks + markers */}
-        {annotations.map((a) => {
-          const isHovered = hover?.chapterIdx === a.chapterIdx && hover?.annotationIdx === a.annotationIdx;
-          return (
-            <g
-              key={`ann-${a.chapterIdx}-${a.annotationIdx}`}
-              className="annotation"
-              onMouseEnter={() =>
-                setHover({
-                  chapterIdx: a.chapterIdx,
-                  annotationIdx: a.annotationIdx,
-                  x: a.x,
-                  y: a.markerY,
-                })
-              }
-              onMouseLeave={() => setHover(null)}
-              onFocus={() =>
-                setHover({
-                  chapterIdx: a.chapterIdx,
-                  annotationIdx: a.annotationIdx,
-                  x: a.x,
-                  y: a.markerY,
-                })
-              }
-              onBlur={() => setHover(null)}
-              tabIndex={0}
-              role="button"
-              aria-label={`${ANNOT_LABELS[a.type]}: ${a.label}`}
-            >
-              <line
-                x1={a.x}
-                x2={a.x}
-                y1={a.markerY + 4}
-                y2={a.tickY}
-                stroke={a.color}
-                strokeWidth={isHovered ? 1.6 : 0.6}
-                opacity={isHovered ? 0.95 : 0.18}
-              />
-              <circle
-                cx={a.x}
-                cy={a.markerY}
-                r={isHovered ? 5.5 : 4}
-                fill={a.color}
-                stroke="var(--bg)"
-                strokeWidth={1.25}
-              />
-            </g>
-          );
-        })}
-
-        {/* Axis bottom: sparse chapter ticks */}
-        {chapters.map((_ch, i) => {
-          const show = i === 0 || i === chapters.length - 1 || (i + 1) % 10 === 0 || i === forkIdx;
-          if (!show) return null;
-          return (
-            <g key={`tick-${i}`}>
-              <line
-                x1={xFor(i)}
-                x2={xFor(i)}
-                y1={PLOT_BOTTOM}
-                y2={PLOT_BOTTOM + 4}
-                stroke="var(--axis-tick)"
-                strokeWidth={1}
-              />
-              <text
-                x={xFor(i)}
-                y={PLOT_BOTTOM + 14}
-                textAnchor="middle"
-                fill="var(--text-muted)"
-                fontSize={10}
-              >
-                {i + 1}
-              </text>
-            </g>
-          );
-        })}
       </svg>
+
+      {isZoomed ? (
+        <div
+          className="chart-scrollbar"
+          ref={trackRef}
+          onPointerDown={onTrackPointerDown}
+          role="scrollbar"
+          aria-controls="world-line-chart"
+          aria-orientation="horizontal"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(panFrac * 100)}
+        >
+          <div
+            className="chart-scrollbar-thumb"
+            style={{
+              left: `${thumbLeftPct}%`,
+              width: `${thumbWidthPct}%`,
+            }}
+            onPointerDown={onThumbPointerDown}
+            onPointerMove={onThumbPointerMove}
+            onPointerUp={onThumbPointerUp}
+            onPointerCancel={onThumbPointerUp}
+          />
+        </div>
+      ) : null}
 
       {hover && hoveredAnnotation && hoveredChapter ? (
         (() => {
@@ -511,6 +835,10 @@ export function WorldLineChart({ chapters }: Props) {
                 ? "-16px"
                 : "-50%";
           const translateY = flipBelow ? "14px" : "calc(-100% - 10px)";
+          // Hide tooltip when its anchor has been panned out of the visible plot.
+          const anchorVisible =
+            hover.x >= PAD_L - 4 && hover.x <= VB_W - PAD_R + 4;
+          if (!anchorVisible) return null;
           return (
             <div
               className="chart-tooltip"
