@@ -43,9 +43,9 @@ const ANNOT_LABELS: Record<AnnotationType, string> = {
 // on the same horizontal line, so scanning for every "Death" (etc.) is a
 // single-row sweep.
 const ANNOT_ROW_ORDER: AnnotationType[] = [
+  "death",
   "ally_or_betrayal",
   "breakthrough",
-  "death",
   "action",
   "reveal",
 ];
