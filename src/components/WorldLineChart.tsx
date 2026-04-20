@@ -49,7 +49,7 @@ const ANNOT_COLORS: Record<AnnotationType, string> = {
 };
 
 const ANNOT_LABELS: Record<AnnotationType, string> = {
-  death: "Death",
+  death: "Major Death",
   breakthrough: "Breakthrough",
   reveal: "Reveal",
   ally_or_betrayal: "Ally / betrayal",
