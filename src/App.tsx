@@ -9,7 +9,7 @@ export default function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1 className="title">Novel world line</h1>
+        <h1 className="title">Hierarchy Series</h1>
         <p className="subtitle">
           A single line traces each chapter's world. Book I holds a flat Res course; Book II opens
           three tracks — Luceum, Res, Obiteum — and the line splits and rejoins as the story moves
