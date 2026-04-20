@@ -48,50 +48,84 @@ ANNOTATION_PATTERNS: dict[str, tuple[re.Pattern[str], ...]] = {
             r"\bslays?\b",
             r"\bfalls?\s+dead\b",
             r"\bperishes\b",
+            r"\bbleeds?\s+out\b",
+            r"\bstabs?\s+\w+\s+to\s+death\b",
         )
     ),
-    "new_relationship": tuple(
+    "reveal": tuple(
         re.compile(p, re.IGNORECASE)
         for p in (
-            r"\bmeets\b",
-            r"\bis\s+introduced\s+to\b",
-            r"\bintroduces\s+(?:him|her|them)self\b",
-            r"\bfirst\s+encounters?\b",
+            r"\breveals?\b",
+            r"\bdiscovers?\b",
+            r"\bconfesses?\b",
+            r"\badmits?\b",
+            r"\bexposes?\b",
+            r"\buncovers?\b",
+            r"\bthe\s+truth\s+(?:about|of)\b",
+            r"\bturns\s+out\s+to\s+be\b",
         )
     ),
-    "major_relationship_change": tuple(
+    "ally_or_betrayal": tuple(
         re.compile(p, re.IGNORECASE)
         for p in (
             r"\bbetrays?\b",
-            r"\breconciles?\b",
-            r"\bbreaks?\s+with\b",
-            r"\bswears?\s+to\b",
             r"\ballies?\s+with\b",
+            r"\breconciles?\b",
+            r"\bswears?\s+(?:to|an\s+oath)\b",
             r"\bturns?\s+on\b",
             r"\bforgives?\b",
-            r"\bdeclares?\s+war\b",
+            r"\bjoins?\s+forces\b",
+            r"\bpledges?\b",
+            r"\bbreaks?\s+with\b",
+            r"\bfirst\s+meets?\b",
         )
     ),
-    "major_event": tuple(
+    "action": tuple(
         re.compile(p, re.IGNORECASE)
         for p in (
-            r"\bdestroy(?:s|ed)\b",
+            r"\battacks?\b",
+            r"\bambushes?\b",
+            r"\bduels?\b",
+            r"\bbattle\b",
+            r"\bcharges\s+(?:at|into)\b",
+            r"\bflees?\b",
+            r"\bsiege\b",
+            r"\braid\b",
+            r"\bfights?\b",
+            r"\bstrikes?\s+down\b",
+            r"\bclashes?\b",
             r"\bescapes?\b",
-            r"\bdiscovers?\s+the\b",
-            r"\breveals?\b",
-            r"\bgate\s+opens?\b",
-            r"\bcataclysm\b",
-            r"\bcollapses?\b",
-            r"\buprising\b",
-            r"\brevolt\b",
+            r"\bchases?\b",
         )
     ),
-    # Catch-all: emit the first sentence of the chapter as a "minor" note if
-    # no other type fired. Toggle via EMIT_MINOR_FALLBACK.
-    "minor_event": (),
+    "breakthrough": tuple(
+        re.compile(p, re.IGNORECASE)
+        for p in (
+            r"\bCedes?\b",
+            r"\breceives?\s+(?:the\s+)?Will\b",
+            r"\bmasters?\b",
+            r"\bunlocks?\b",
+            r"\bawakens?\b",
+            r"\badvances?\s+to\s+Class\b",
+            r"\bpromoted\b",
+            r"\bbreaks?\s+through\b",
+            r"\bFoundation\s+(?:lesson|form)\b",
+        )
+    ),
 }
 
-EMIT_MINOR_FALLBACK = True
+# Skip any sentence matching this pattern when scanning for `death`, so that
+# recap phrasing ("remembers Cian's death", "news of Feriun's death") doesn't
+# fire a new death marker.
+DEATH_RECAP = re.compile(
+    r"\b(?:remember(?:s|ing|ed)?|recall(?:s|ing|ed)?|"
+    r"news\s+of|word\s+of|learns?\s+of|learned\s+of|hears?\s+of|"
+    r"mourns?|mourning|already\s+dead|"
+    r"\w+'s\s+(?:death|funeral|murder)|"
+    r"the\s+death\s+of)\b",
+    re.IGNORECASE,
+)
+
 SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
 
 
@@ -148,21 +182,27 @@ def load_tsotf_worlds() -> dict[int, list[str]]:
     return out
 
 
-def detect_annotations(text: str) -> list[dict[str, str]]:
-    sents = _sentences(text)
+def detect_annotations(overview: str, summary: str) -> list[dict[str, str]]:
+    """Scan overview sentences first (tighter, self-contained), then fall
+    back to summary sentences for types that didn't fire in the overview.
+    Labels pulled from the overview tend to read cleaner than mid-paragraph
+    summary fragments."""
     results: list[dict[str, str]] = []
     used_types: set[str] = set()
-    for sent in sents:
-        for ann_type, patterns in ANNOTATION_PATTERNS.items():
-            if ann_type in used_types or not patterns:
-                continue
-            for pat in patterns:
-                if pat.search(sent):
-                    results.append({"type": ann_type, "label": _trim_label(sent)})
-                    used_types.add(ann_type)
-                    break
-    if EMIT_MINOR_FALLBACK and not results and sents:
-        results.append({"type": "minor_event", "label": _trim_label(sents[0])})
+
+    for source in (overview, summary):
+        for sent in _sentences(source):
+            for ann_type, patterns in ANNOTATION_PATTERNS.items():
+                if ann_type in used_types or not patterns:
+                    continue
+                if ann_type == "death" and DEATH_RECAP.search(sent):
+                    continue
+                for pat in patterns:
+                    if pat.search(sent):
+                        results.append({"type": ann_type, "label": _trim_label(sent)})
+                        used_types.add(ann_type)
+                        break
+
     return results
 
 
@@ -184,7 +224,8 @@ def build() -> dict:
     # Book I: always Res. Annotations extracted from text.
     for ch in twotm:
         series_index += 1
-        text = f"{ch.get('overview', '')}\n{ch.get('summary', '')}"
+        overview = ch.get("overview", "")
+        summary = ch.get("summary", "")
         out_chapters.append(
             {
                 "seriesIndex": series_index,
@@ -192,7 +233,7 @@ def build() -> dict:
                 "indexInBook": int(ch.get("index", series_index)),
                 "label": ch.get("label", f"Chapter {series_index}"),
                 "worlds": ["Res"],
-                "annotations": detect_annotations(text),
+                "annotations": detect_annotations(overview, summary),
             }
         )
 
@@ -201,7 +242,8 @@ def build() -> dict:
     for ch in tsotf:
         series_index += 1
         idx = int(ch.get("index", series_index))
-        text = f"{ch.get('overview', '')}\n{ch.get('summary', '')}"
+        overview = ch.get("overview", "")
+        summary = ch.get("summary", "")
         if idx in tsotf_worlds:
             worlds = tsotf_worlds[idx]
         else:
@@ -214,7 +256,7 @@ def build() -> dict:
                 "indexInBook": idx,
                 "label": ch.get("label", f"Chapter {series_index}"),
                 "worlds": worlds,
-                "annotations": detect_annotations(text),
+                "annotations": detect_annotations(overview, summary),
             }
         )
 

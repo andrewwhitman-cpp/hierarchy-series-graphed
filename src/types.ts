@@ -3,11 +3,11 @@ export type BookId = "twotm" | "tsotf";
 export type WorldId = "Res" | "Luceum" | "Obiteum";
 
 export type AnnotationType =
-  | "new_relationship"
-  | "major_relationship_change"
   | "death"
-  | "major_event"
-  | "minor_event";
+  | "reveal"
+  | "ally_or_betrayal"
+  | "action"
+  | "breakthrough";
 
 export interface ChapterAnnotation {
   type: AnnotationType;

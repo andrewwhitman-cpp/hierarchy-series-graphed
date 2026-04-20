@@ -24,30 +24,30 @@ const TRACK_Y: Record<WorldId, number> = {
 const WORLD_ORDER: WorldId[] = ["Luceum", "Res", "Obiteum"];
 
 const ANNOT_COLORS: Record<AnnotationType, string> = {
-  new_relationship: "#7dcfff",
-  major_relationship_change: "#bb9af7",
   death: "#f7768e",
-  major_event: "#f0c674",
-  minor_event: "#8b919c",
+  breakthrough: "#9ece6a",
+  reveal: "#f0c674",
+  ally_or_betrayal: "#7dcfff",
+  action: "#ff9e64",
 };
 
 const ANNOT_LABELS: Record<AnnotationType, string> = {
-  new_relationship: "New relationship",
-  major_relationship_change: "Relationship shift",
   death: "Death",
-  major_event: "Major event",
-  minor_event: "Minor event",
+  breakthrough: "Breakthrough",
+  reveal: "Reveal",
+  ally_or_betrayal: "Ally / betrayal",
+  action: "Action",
 };
 
 // Row order (top -> bottom) for annotation markers. Same-type markers all sit
 // on the same horizontal line, so scanning for every "Death" (etc.) is a
 // single-row sweep.
 const ANNOT_ROW_ORDER: AnnotationType[] = [
-  "new_relationship",
-  "major_relationship_change",
+  "ally_or_betrayal",
+  "breakthrough",
   "death",
-  "major_event",
-  "minor_event",
+  "action",
+  "reveal",
 ];
 
 const ANNOT_ROW_STEP = 14;

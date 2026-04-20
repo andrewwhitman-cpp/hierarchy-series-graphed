@@ -13,8 +13,8 @@ export default function App() {
         <p className="subtitle">
           A single line traces each chapter's world. Book I holds a flat Res course; Book II opens
           three tracks — Luceum, Res, Obiteum — and the line splits and rejoins as the story moves
-          between them. Markers above the chart flag deaths, new relationships, relationship
-          changes, and major or minor plot events.
+          between them. Markers above the chart flag deaths, reveals, alliances and betrayals,
+          action beats, and breakthroughs.
         </p>
       </header>
 
