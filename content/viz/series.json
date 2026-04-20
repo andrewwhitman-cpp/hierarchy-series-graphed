@@ -1,0 +1,2568 @@
+{
+  "version": 2,
+  "chapters": [
+    {
+      "seriesIndex": 1,
+      "book": "twotm",
+      "indexInBook": 1,
+      "label": "Chapter I",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The Vetusian exchange reveals a hidden connection and a search for clues about Caeror and an ancient \"gate.\" Nateo’s desperate attack nearly exposes Vis’s unus…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 2,
+      "book": "twotm",
+      "indexInBook": 2,
+      "label": "Chapter II",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "He enters a hidden room and meets Septimus Ellanher, who reveals a “special bout”: Vis will face a Sextus—an escalation arranged days ago."
+        },
+        {
+          "type": "major_event",
+          "label": "He enters a hidden room and meets Septimus Ellanher, who reveals a “special bout”: Vis will face a Sextus—an escalation arranged days ago."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 3,
+      "book": "twotm",
+      "indexInBook": 3,
+      "label": "Chapter III",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis stalls to survive the crucial first minute, but the Sextus’s taunts about Vis’s past trigger him into attacking."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 4,
+      "book": "twotm",
+      "indexInBook": 4,
+      "label": "Chapter IV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Leaving before dawn, Vis detours to Letens’s Bibliotheca and steals a travelogue packed with maps and notes on uninhabited islands three weeks east—an undesira…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 5,
+      "book": "twotm",
+      "indexInBook": 5,
+      "label": "Chapter V",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis discovers the visiting adopter is the Military-aligned Quintus Ulciscor Telimus, who confronted him about the Sapper incident and his secret Bibliotheca vi…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 6,
+      "book": "twotm",
+      "indexInBook": 6,
+      "label": "Chapter VI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Ulciscor recruits Vis to secretly investigate Religion’s Academy on Solivagus, suspecting Principalis Veridius Julii is hiding activities tied to pre-Cataclysm…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 7,
+      "book": "twotm",
+      "indexInBook": 7,
+      "label": "Chapter VII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "At the crash site, Ulciscor executes a suspected saboteur, but a hidden archer drops him with an arrow."
+        },
+        {
+          "type": "major_event",
+          "label": "To Vis’s shock, the Magnus Quintus collapses face-first and remains down, an abrupt incapacitation out of proportion to the wound."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 8,
+      "book": "twotm",
+      "indexInBook": 8,
+      "label": "Chapter VIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis (Diago) defeats the remaining raiders but is wounded, then faces an Anguis archer from the Theatre who reveals the Anguis engineered the raid to reach him…"
+        },
+        {
+          "type": "death",
+          "label": "Sedotia then sets an ultimatum: meet her at a naumachia in Caten during the Festival of Jovan in one month or she will expose his identity, potentially trigger…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 9,
+      "book": "twotm",
+      "indexInBook": 9,
+      "label": "Chapter IX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "He feigns sleep as two students whisper about the wrecked Transvect, then reveals he is awake and learns their names—Emissa and Indol."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 10,
+      "book": "twotm",
+      "indexInBook": 10,
+      "label": "Chapter X",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Veridius greets Ulciscor as an old friend, reveals his role as Principalis, and swiftly admits Vis to the Academy."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 11,
+      "book": "twotm",
+      "indexInBook": 11,
+      "label": "Chapter XI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis arrives in Caten, overwhelmed by its Will-forged grandeur while privately grappling with Sedotia’s coercive threat tied to an upcoming naumachia."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 12,
+      "book": "twotm",
+      "indexInBook": 12,
+      "label": "Chapter XII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Ulciscor and Lanistia link the Transvect ambush to the Anguis and Melior, weigh unsettling murders and Corrector tests, and debate Vis’s reliability."
+        },
+        {
+          "type": "major_event",
+          "label": "Ulciscor grants Lanistia two months to assess Vis and reveals a ruthless fallback: if Veridius kills Vis, it could force the Senate’s hand."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 13,
+      "book": "twotm",
+      "indexInBook": 13,
+      "label": "Chapter XIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "A Will-empowered assailant attacks, pins, and chokes him; escape attempts fail."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 14,
+      "book": "twotm",
+      "indexInBook": 14,
+      "label": "Chapter XIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Lanistia probes Vis’s motives, reveals her Will-based method of perceiving the world, and sets the stakes: physical skill is essential to advanced Will control."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 15,
+      "book": "twotm",
+      "indexInBook": 15,
+      "label": "Chapter XV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Lanistia dresses the wound with practiced competence, and, as she stitches, she reveals how her Will-based vision can focus perfectly on a detail while renderi…"
+        },
+        {
+          "type": "death",
+          "label": "After mounting frustration, he executes one correct move, a small but real success."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 16,
+      "book": "twotm",
+      "indexInBook": 16,
+      "label": "Chapter XVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Two weeks of relentless training and study culminate in a secret pre-dawn meeting where Magnus Quartus Advenius Claudius quietly tests Vis and asserts politica…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 17,
+      "book": "twotm",
+      "indexInBook": 17,
+      "label": "Chapter XVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "She forcefully rejects rumors of Caeror’s suicide, asserting Veridius killed him."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 18,
+      "book": "twotm",
+      "indexInBook": 18,
+      "label": "Chapter XVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Aequa reveals the public account of Caeror’s death—suicide during the Iudicium and Veridius’s celebrated rescue—exposing Ulciscor’s past, public dispute."
+        },
+        {
+          "type": "death",
+          "label": "In the crush, Aequa abruptly outlines the public story of Caeror Telimus’s death: during the Academy Iudicium six years earlier, Caeror believed he had killed…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 19,
+      "book": "twotm",
+      "indexInBook": 19,
+      "label": "Chapter XIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "There, “Melior” steps forward and reveals himself as Estevan, a trusted former advisor from Suus."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 20,
+      "book": "twotm",
+      "indexInBook": 20,
+      "label": "Chapter XX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "At a side chamber near where Vis met Estevan earlier, Vis helps Aequa onto a stair that should lead out and urges her to escape."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 21,
+      "book": "twotm",
+      "indexInBook": 21,
+      "label": "Chapter XXI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "After a tense exchange about complicity and resistance, Estevan abruptly kills himself with the stylus, leaving the outcome of his deadly working uncertain."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 22,
+      "book": "twotm",
+      "indexInBook": 22,
+      "label": "Chapter XXII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis hides his role by disposing of Estevan/Melior’s body and the stylus, then collapses and later awakens a celebrated hero."
+        },
+        {
+          "type": "death",
+          "label": "Kadmos greets him warmly, and Ulciscor arrives to debrief him: the Arena disaster killed more than a third present and weakened many Will pyramids, causing cit…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 23,
+      "book": "twotm",
+      "indexInBook": 23,
+      "label": "Chapter XXIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Gaius then reveals four precise sketches: silhouetted figures before a full moon, a sand-buried ruin with shattered glass pillars, a vast hall with a triangula…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 24,
+      "book": "twotm",
+      "indexInBook": 24,
+      "label": "Chapter XXIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis resumes study with Kadmos, who denounces the Senate physician’s sampling and reveals a past as Azriat’s briefly tenured head, scars from refusing the Auror…"
+        },
+        {
+          "type": "new_relationship",
+          "label": "On a sweltering morning, Vis meets Kadmos for lessons and thanks him for his care while Vis was unconscious."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 25,
+      "book": "twotm",
+      "indexInBook": 25,
+      "label": "Chapter XXV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis arrives at Solivagus and is personally welcomed by Principalis Veridius, who acknowledges Ulciscor’s suspicions but promises fair treatment under strict ru…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 26,
+      "book": "twotm",
+      "indexInBook": 26,
+      "label": "Chapter XXVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Challenged, Vis ends the confrontation by stating, “Because I killed him,” about Melior, which disperses the would-be bullies."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 27,
+      "book": "twotm",
+      "indexInBook": 27,
+      "label": "Chapter XXVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_relationship_change",
+          "label": "Over lunch, Callidus joins Vis, cautiously reconciles, and they bond over difficult Will studies."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 28,
+      "book": "twotm",
+      "indexInBook": 28,
+      "label": "Chapter XXVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis cleans the stables, scouts a potential escape over the eastern wall, and resolves to bide his time."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 29,
+      "book": "twotm",
+      "indexInBook": 29,
+      "label": "Chapter XXIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "Vis takes a morning run and then meets Callidus on the way to breakfast."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 30,
+      "book": "twotm",
+      "indexInBook": 30,
+      "label": "Chapter XXX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "After six weeks of isolation under Praeceptor Dultatis’s disdain, Class Six runs the Labyrinth assessment, which impacts student rankings."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 31,
+      "book": "twotm",
+      "indexInBook": 31,
+      "label": "Chapter XXXI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis takes control of the Labyrinth bracer and, coordinating with Eidhin in Cymrian, successfully guides him through."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 32,
+      "book": "twotm",
+      "indexInBook": 32,
+      "label": "Chapter XXXII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "This, he says, ensures good positions for students like them and reveals that advancement depends on opportunity and taking, not merit alone."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 33,
+      "book": "twotm",
+      "indexInBook": 33,
+      "label": "Chapter XXXIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "A repeating Vetusian warning about Obiteum and a gate prompts his panicked escape."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 34,
+      "book": "twotm",
+      "indexInBook": 34,
+      "label": "Chapter XXXIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis stages an accident to justify his injured hand and receives treatment from Ulnius, who reveals Veridius is quietly checking for unusual wounds."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 35,
+      "book": "twotm",
+      "indexInBook": 35,
+      "label": "Chapter XXXV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Eidhin joins him unannounced and bluntly asks—in Cymrian—if Vis killed someone the previous night."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 36,
+      "book": "twotm",
+      "indexInBook": 36,
+      "label": "Chapter XXXVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Callidus arrives without luggage and reveals his father has forbidden him from attending, framing the isolation as necessary to maintain their protective decep…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 37,
+      "book": "twotm",
+      "indexInBook": 37,
+      "label": "Chapter XXXVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Lanistia presses Vis and reveals her ambivalence about answers to her blindness."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 38,
+      "book": "twotm",
+      "indexInBook": 38,
+      "label": "Chapter XXXVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "She claims Caten is nearing a destabilizing power shift and argues Vis could become a credible, unseduced insider capable of influencing its collapse."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 39,
+      "book": "twotm",
+      "indexInBook": 39,
+      "label": "Chapter XXXIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis navigates tense family friction in the Telimus tomb before Ulciscor accelerates his risky plan to reach Solivagus unseen."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 40,
+      "book": "twotm",
+      "indexInBook": 40,
+      "label": "Chapter XL",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Inside, he finds obsidian-pinned bodies and is carried downward on a collapsing platform, while his locator fails and time to escape dwindles."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 41,
+      "book": "twotm",
+      "indexInBook": 41,
+      "label": "Chapter XLI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "A guide’s fatal demonstration reveals Remnants’ lethality and the necessity of a control bracer near overwhelming Accord."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 42,
+      "book": "twotm",
+      "indexInBook": 42,
+      "label": "Chapter XLII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Vis sprints for the coast, rescues an injured alupi pup, then executes a perilous plan to reboard the returning Transvect by grappling from the sea."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 43,
+      "book": "twotm",
+      "indexInBook": 43,
+      "label": "Chapter XLIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "News of Feriun’s death triggers a contentious promotion dispute."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 44,
+      "book": "twotm",
+      "indexInBook": 44,
+      "label": "Chapter XLIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Emissa quietly reveals she understands Cymrian, and warns that Aequa is asking about Vis’s return."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 45,
+      "book": "twotm",
+      "indexInBook": 45,
+      "label": "Chapter XLV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Before a massive audience, Vis duels Ianix and discovers the Amotus appears rigged to ignore clean hits."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 46,
+      "book": "twotm",
+      "indexInBook": 46,
+      "label": "Chapter XLVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_relationship_change",
+          "label": "Vis reconciles with Callidus and learns of a dangerous pattern of deaths and disappearances among Classes Three and Four, allegedly hidden by Silencium and inf…"
+        },
+        {
+          "type": "new_relationship",
+          "label": "At dawn after defeating Ianix, Vis settles into the Class Five dorm, then meets Callidus, who jokes about Vis’s anger and notes the students’ fear."
+        },
+        {
+          "type": "major_event",
+          "label": "He then reveals why he previously urged caution: for the past four Academy cycles, multiple students from Classes Three and Four have died during the Iudicium…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 47,
+      "book": "twotm",
+      "indexInBook": 47,
+      "label": "Chapter XLVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "He then meets Eidhin in the nearly empty Bibliotheca to continue their nightly Common lessons."
+        },
+        {
+          "type": "major_event",
+          "label": "Eidhin then reveals that on Vis’s first day, Principalis Veridius suggested Eidhin publicly knock down Callidus to satisfy those targeting Callidus’s father an…"
+        },
+        {
+          "type": "death",
+          "label": "As they walk back, Eidhin confides a darker truth: before the Academy he spent almost a year in a Sapper because he killed three Praetorians."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 48,
+      "book": "twotm",
+      "indexInBook": 48,
+      "label": "Chapter XLVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis integrates into Class Four’s rigorous, debate-driven routine under Scitus, noting factional loyalties and Aequa’s unpopular top rank."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 49,
+      "book": "twotm",
+      "indexInBook": 49,
+      "label": "Chapter XLIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis, rattled by Indol’s invitation to Suus and memories of his past, resolves to seek Relucia’s help at the Festival of Pletuna to avoid the trip."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 50,
+      "book": "twotm",
+      "indexInBook": 50,
+      "label": "Chapter L",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "She admits the Anguis murdered a student to enable his promotion, reveals she orchestrated the Suus trip around a Military summit, and orders him to spy on its…"
+        },
+        {
+          "type": "major_event",
+          "label": "She admits the Anguis murdered a student to enable his promotion, reveals she orchestrated the Suus trip around a Military summit, and orders him to spy on its…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 51,
+      "book": "twotm",
+      "indexInBook": 51,
+      "label": "Chapter LI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis tails Relucia and overhears a chilling plot involving a traded ship, a Cataclysm weapon used as an anchoring point, and ensuring only a single survivor can…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 52,
+      "book": "twotm",
+      "indexInBook": 52,
+      "label": "Chapter LII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis hastily claims a specific room, then, alone, succumbs to a quiet breakdown before reaffirming his goal: endure the summit, reach and win the Iudicium, and…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 53,
+      "book": "twotm",
+      "indexInBook": 53,
+      "label": "Chapter LIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "Vis is introduced to a stream of senators, including Magnus Quintus Omus, while suppressing his anger at the occupation and playing the dutiful rising student."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 54,
+      "book": "twotm",
+      "indexInBook": 54,
+      "label": "Chapter LIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis joins his cohort at the beach, revisiting painful memories and subtly testing Belli about Callidus."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 55,
+      "book": "twotm",
+      "indexInBook": 55,
+      "label": "Chapter LV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "He meets Indol, who mentions Emissa’s plan for a private evening swim at the lagoon."
+        },
+        {
+          "type": "major_event",
+          "label": "As they talk, Emissa reveals that Indol hates his father and intends to shift from Military to Religion after graduation, a secret Vis must keep."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 56,
+      "book": "twotm",
+      "indexInBook": 56,
+      "label": "Chapter LVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis pretends to be ill to eavesdrop on a secret Military summit and learns they covertly abetted the Anguis attack at the Festival of Jovan."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 57,
+      "book": "twotm",
+      "indexInBook": 57,
+      "label": "Chapter LVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "He confirms the royal family’s hanging and reveals Quartus Latani—who ordered the killings—is on the island."
+        },
+        {
+          "type": "death",
+          "label": "He offers to arrange justice, but Vis refuses, noting it would lead to Fadrique’s execution in a Sapper and harm Suus."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 58,
+      "book": "twotm",
+      "indexInBook": 58,
+      "label": "Chapter LVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis awakens from his meeting with Fadrique, reflecting on his father’s indictment of the Hierarchy’s greed and recommitting to his mission."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 59,
+      "book": "twotm",
+      "indexInBook": 59,
+      "label": "Chapter LIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Callidus then reveals Belli has been blackmailing him with Governance documents he stole for her, threatening his family’s ruin."
+        },
+        {
+          "type": "new_relationship",
+          "label": "He meets Callidus in the library, where gossip about Vis and Emissa’s rescue has already spread via Senate connections."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 60,
+      "book": "twotm",
+      "indexInBook": 60,
+      "label": "Chapter LX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Vis executes a calculated public gambit to force Belli into a high-stakes Foundation match, wagering his factional allegiance against her Class Three spot."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 61,
+      "book": "twotm",
+      "indexInBook": 61,
+      "label": "Chapter LXI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "After a Labyrinth session, Callidus takes Vis to Class Seven’s dormitory and reveals hidden documents: eight deaths among Thirds and Fourths over recent years…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 62,
+      "book": "twotm",
+      "indexInBook": 62,
+      "label": "Chapter LXII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "After Veridius probes Vis’s relentless training and cautions about recruiter secrecy, Eidhin reveals his coerced circumstances and declines the team."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 63,
+      "book": "twotm",
+      "indexInBook": 63,
+      "label": "Chapter LXIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_relationship_change",
+          "label": "Veridius launches the Iudicium with rules that weaponize distrust: Thirds carry vulnerable medallions, Fourths can link or betray, and Sextii shadow safety tea…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 64,
+      "book": "twotm",
+      "indexInBook": 64,
+      "label": "Chapter LXIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "That night, Aequa returns, frees them, and reveals she planted Vis’s tracker in Iro’s food to draw Sextii and eliminate Iro’s team."
+        },
+        {
+          "type": "major_relationship_change",
+          "label": "Under pressure and determined not to lose, Aequa appears to betray Vis, allowing Iro to link her medallion to his."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 65,
+      "book": "twotm",
+      "indexInBook": 65,
+      "label": "Chapter LXV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis escapes with an apparently inert plate and sets off alone toward the river and the dome, planning to run the Labyrinth untracked."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 66,
+      "book": "twotm",
+      "indexInBook": 66,
+      "label": "Chapter LXVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "He speaks the command, “Scintres Exunus,” and the red-glass pyramid parts to reveal the stairs."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 67,
+      "book": "twotm",
+      "indexInBook": 67,
+      "label": "Chapter LXVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The sight of Belli’s fresh corpse almost dooms him, but he narrowly escapes through the exit as the Remnants rage at the threshold."
+        },
+        {
+          "type": "death",
+          "label": "Upon entering the Labyrinth, Vis counts seconds and executes his practiced sequence, adjusting passages to redirect each Remnant’s path."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 68,
+      "book": "twotm",
+      "indexInBook": 68,
+      "label": "Chapter LXVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Fleeing, Vis escapes the Labyrinth, only to be hunted by eyeless warriors."
+        },
+        {
+          "type": "death",
+          "label": "Vis survives by targeting neck breaks; he kills two but suffers a deep bite to his left arm."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 69,
+      "book": "twotm",
+      "indexInBook": 69,
+      "label": "Chapter LXIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "Vis returns east and meets Callidus and Aequa."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 70,
+      "book": "twotm",
+      "indexInBook": 70,
+      "label": "Chapter LXX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Vis and Aequa discover a mass grave of murdered safety teams, confirming an imminent, coordinated attack during the Iudicium."
+        },
+        {
+          "type": "major_event",
+          "label": "He also reveals Indol’s plan to defect to Religion, complicating the political stakes."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 71,
+      "book": "twotm",
+      "indexInBook": 71,
+      "label": "Chapter LXXI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Emissa’s decoy plan is exposed and her diversions are brutally killed."
+        },
+        {
+          "type": "major_event",
+          "label": "A scarred Anguis operative reveals Military’s larger scheme to exploit the massacre, then coerces Vis into pursuing the Heart by threatening someone important…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 72,
+      "book": "twotm",
+      "indexInBook": 72,
+      "label": "Chapter LXXII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Suddenly, the Sextus falters and collapses."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 73,
+      "book": "twotm",
+      "indexInBook": 73,
+      "label": "Chapter LXXIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "He finds Callidus mortally wounded by an Anguis and carries him back, but Callidus dies."
+        },
+        {
+          "type": "major_event",
+          "label": "Diago, the massive alupi, watches from the bank; bite marks on Vis’s arm reveal Diago dragged him from the river."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 74,
+      "book": "twotm",
+      "indexInBook": 74,
+      "label": "Chapter LXXIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Veridius urges him to join Religion to help prevent another Cataclysm, but after grieving Callidus and reflecting on his choices, Vis instead claims a post wit…"
+        },
+        {
+          "type": "death",
+          "label": "Pressed for honesty, Vis admits he ran the Labyrinth in the ruins and that the writing on his arm helped him escape; he tells Veridius Belli is dead."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 75,
+      "book": "tsotf",
+      "indexInBook": 1,
+      "label": "I",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Caeror then reveals the broader horror behind the ruins and prophecies."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 76,
+      "book": "tsotf",
+      "indexInBook": 2,
+      "label": "II",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "The white-cloaked Cian, whom Vis vaguely recognizes from the mountaintop rotunda, secretly reveals that powerful figures called Ruarc and the Grove want Vis ki…"
+        },
+        {
+          "type": "major_event",
+          "label": "The white-cloaked Cian, whom Vis vaguely recognizes from the mountaintop rotunda, secretly reveals that powerful figures called Ruarc and the Grove want Vis ki…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 77,
+      "book": "tsotf",
+      "indexInBook": 3,
+      "label": "III",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Veridius warns that powerful forces in Caten want Vis dead, Eidhin reveals Veridius once tried to buy his obedience, and Magnus Ericius confirms that Governanc…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 78,
+      "book": "tsotf",
+      "indexInBook": 4,
+      "label": "IV",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis wakes in darkness with only fragments of memory from the escape with Caeror and the triangular archway they used."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 79,
+      "book": "tsotf",
+      "indexInBook": 5,
+      "label": "V",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "After leading Vis out of Qabr into the desert, Caeror reveals that Vitaeria were created through this same altered magic and are actively preserving them, whil…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 80,
+      "book": "tsotf",
+      "indexInBook": 6,
+      "label": "VI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Caeror proves that Djedef has been turned into a trap by the Concurrence, kills him to prevent future danger, and forces Vis to confront how deeply Ka controls…"
+        },
+        {
+          "type": "major_event",
+          "label": "During their escape, Caeror reveals his real aim: Vis may need to kill Ka, the ancient Synchronous tyrant whose existence across worlds could be sustaining the…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 81,
+      "book": "tsotf",
+      "indexInBook": 7,
+      "label": "VII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Cian secretly frees Vis from King Fiachra’s settlement and gets him past the palisade just before the alarm is raised, turning Vis’s captivity into a desperate…"
+        },
+        {
+          "type": "death",
+          "label": "According to Cian, the Grove now secretly kills anyone who arrives at the white temple as Vis did, acting out of fear and at Ruarc’s urging rather than justice…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 82,
+      "book": "tsotf",
+      "indexInBook": 8,
+      "label": "VIII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Cian briefly secures safety for Vis by relying on the near-sacred status of the draoi, but that protection collapses when Mel ap Mor and the pursuing warband a…"
+        },
+        {
+          "type": "major_relationship_change",
+          "label": "The warband immediately turns on the village: the dogs attack, the riders spread out, and the huts are burned to drive people into the open."
+        },
+        {
+          "type": "death",
+          "label": "The attack partly fails: the farmer wounds the intruder's arm, but the warrior kills him with a spear."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 83,
+      "book": "tsotf",
+      "indexInBook": 9,
+      "label": "IX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Before the Aurora Columnae, Kadmos discovers that Vis's amputated arm is healing unusually quickly and urges him not to sever himself entirely from the Telimus…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 84,
+      "book": "tsotf",
+      "indexInBook": 10,
+      "label": "X",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "At that moment, Lanistia abruptly moves past the guards, kills two of them with terrifying speed, and advances on Vis while repeating, again and again, \"Comple…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 85,
+      "book": "tsotf",
+      "indexInBook": 11,
+      "label": "XI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Caeror presses Vis to accept that Ka must be stopped and reveals their immediate plan: test whether Vis's possible Synchrony lets him control iunctii as Ka doe…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 86,
+      "book": "tsotf",
+      "indexInBook": 12,
+      "label": "XII",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis finally achieves a brief Harmonic link to Tash, but the success is horrifying: he experiences Tash's helpless terror and confirms how completely the Instru…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 87,
+      "book": "tsotf",
+      "indexInBook": 13,
+      "label": "XIII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Vis wakes badly wounded in a small hut, remembering the village attack, Cian's death, and the spear wound that nearly killed him."
+        },
+        {
+          "type": "major_event",
+          "label": "Because they do not share a language, Vis learns only basic facts at first, but he realizes he has been carried away from the destroyed village and nursed thro…"
+        },
+        {
+          "type": "new_relationship",
+          "label": "He meets her children, Róisín and Tadhg, and her father, Onchú."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 88,
+      "book": "tsotf",
+      "indexInBook": 14,
+      "label": "XIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis visits Lanistia in East Caten Prison, but the trip also becomes a covert Anguis exchange when Relucia warns him that the mysterious scarred man will soon c…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 89,
+      "book": "tsotf",
+      "indexInBook": 15,
+      "label": "XV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Lanistia then reveals a fragment of memory that gives Vis a new lead."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 90,
+      "book": "tsotf",
+      "indexInBook": 16,
+      "label": "XVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Emissa finally explains that she attacked Vis because she believed his altered blood marked him as one of the undead Iunctii, then warns him that an official b…"
+        },
+        {
+          "type": "major_relationship_change",
+          "label": "Emissa admits Veridius thinks Vis's blood was altered by what happened in the ruins and on the far side of the island, and she apologizes sincerely, but Vis ca…"
+        },
+        {
+          "type": "major_event",
+          "label": "He tells Eidhin almost everything that has happened recently: the ruins, the red dome, the Labyrinth, Veridius's claims about the Cataclysm, the Aurora Columna…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 91,
+      "book": "tsotf",
+      "indexInBook": 17,
+      "label": "XVII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "That night druid Lir tracks down Cian’s staff, attacks Vis, and nearly has him killed."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 92,
+      "book": "tsotf",
+      "indexInBook": 18,
+      "label": "XVIII",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis and Caeror continue preparing for an infiltration of Duat, refining both Vis’s knowledge of the city and his disturbing but useful ability to control iunct…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 93,
+      "book": "tsotf",
+      "indexInBook": 19,
+      "label": "XIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "In a locked room, Vis meets an elderly Sextus called Quaestor."
+        },
+        {
+          "type": "major_event",
+          "label": "Vis cannot determine the purpose of the test, which increases his anxiety, and his dulled state makes it harder to think ahead in the game or judge how much hi…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 94,
+      "book": "tsotf",
+      "indexInBook": 20,
+      "label": "XX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Just before Placement, Vis is confronted by the scarred Anguis agent, who reveals that Vis possesses an ability called Adoption and gives him a dangerous new a…"
+        },
+        {
+          "type": "major_relationship_change",
+          "label": "When Vis tries to build a better working relationship, Livia finally states the source of her hostility: she does not trust him, she believes he is using her f…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 95,
+      "book": "tsotf",
+      "indexInBook": 21,
+      "label": "XXI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "With no other route into Duat and no safe escape, Vis controls a single Gleaner, has it spear him, and is carried into Duat disguised as a corpse, turning cata…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 96,
+      "book": "tsotf",
+      "indexInBook": 22,
+      "label": "XXII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "An older Sextus, Caeso Tullius, introduces himself as Vis’s examiner, notes that Vis is late, and leads him into the arena."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 97,
+      "book": "tsotf",
+      "indexInBook": 23,
+      "label": "XXIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_relationship_change",
+          "label": "Just as important, Vis recognizes the assessments as a political warning from Senate and Religion to Military, and he finally reconciles with Aequa after learn…"
+        },
+        {
+          "type": "major_event",
+          "label": "She says an Anguis team spotted and pursued her while she was carrying Callidus’s tracker, and after a desperate escape she realized she had lost it and return…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 98,
+      "book": "tsotf",
+      "indexInBook": 24,
+      "label": "XXIV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Vis, still posing as Deaglán, arrives at Caer Áras and learns that carrying Cian’s staff may get him executed amid deeper conflict among the druids."
+        },
+        {
+          "type": "major_event",
+          "label": "While confined in a bare hut, Vis considers escape but rejects it because he still believes these people may be his best refuge."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 99,
+      "book": "tsotf",
+      "indexInBook": 25,
+      "label": "XXV",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Faced with the option of sacrificing a prisoner to create an escape, Vis instead frees Ahmose and orders Duodecim to become the distraction, even though that c…"
+        },
+        {
+          "type": "death",
+          "label": "After Duodecim dies covering their flight, Vis forces open a mutalis gate and finally enters Duat."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 100,
+      "book": "tsotf",
+      "indexInBook": 26,
+      "label": "XXVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Unable to escape the challenge once it becomes a spectacle, Vis turns the confrontation into a wager over legitimacy itself: if he wins a chariot race against…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 101,
+      "book": "tsotf",
+      "indexInBook": 27,
+      "label": "XXVII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "On deck he meets Neasa, who tells him they are sailing to Loch Traenala, a Bródúil warrior school, and that the journey will take weeks."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 102,
+      "book": "tsotf",
+      "indexInBook": 28,
+      "label": "XXVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Vis learns that Decimus’s challenge is more than a personal attack: losing Domitor in public could destabilize the fragile alliance between Governance and Reli…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 103,
+      "book": "tsotf",
+      "indexInBook": 29,
+      "label": "XXIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis then reveals a startling new capability by taking control of Iro’s Will after Iro imbues Vis’s chariot, survives the final trap by jumping clear, and keeps…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 104,
+      "book": "tsotf",
+      "indexInBook": 30,
+      "label": "XXX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_relationship_change",
+          "label": "Indol then approaches and reconciles with Vis."
+        },
+        {
+          "type": "major_event",
+          "label": "In a lowered, coded conversation, Indol confirms that his blood was tested too, reveals he is no longer speaking of Dimidius Quiscil as his father, and says he…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 105,
+      "book": "tsotf",
+      "indexInBook": 31,
+      "label": "XXXI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis confirms that the old under-river escape route is sealed, making contact with the elusive Netiqret their only realistic chance to reach the eastern side."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 106,
+      "book": "tsotf",
+      "indexInBook": 32,
+      "label": "XXXII",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Netiqret then traps and interrogates them, and Ahmose reveals that she is a mesektet, an assassin who kills westerners so their bodies can be reassigned as ser…"
+        },
+        {
+          "type": "major_event",
+          "label": "Netiqret then traps and interrogates them, and Ahmose reveals that she is a mesektet, an assassin who kills westerners so their bodies can be reassigned as ser…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 107,
+      "book": "tsotf",
+      "indexInBook": 33,
+      "label": "XXXIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "At the Necropolis, Emissa reveals that Veridius once prepared her for a secret role connected to stopping a second Cataclysm, but her illegal passage through t…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 108,
+      "book": "tsotf",
+      "indexInBook": 34,
+      "label": "XXXIV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_relationship_change",
+          "label": "Yet their reconciliation remains incomplete: Vis forgives Emissa, but he accepts that trust and love cannot be fully restored."
+        },
+        {
+          "type": "major_event",
+          "label": "After leaving Military's hidden Necropolis, Emissa tells Vis that she knows he had already guessed what the Anguis prisoner would reveal."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 109,
+      "book": "tsotf",
+      "indexInBook": 35,
+      "label": "XXXV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "At Loch Traenala, Vis's training makes clear how much losing his arm has shaken both his fighting ability and his confidence."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 110,
+      "book": "tsotf",
+      "indexInBook": 36,
+      "label": "XXXVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "To investigate anyway, he and Aequa slip past the Academy wall after Vis secretly disables the cuffs with Adoption, forcing him to reveal his dangerous new abi…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 111,
+      "book": "tsotf",
+      "indexInBook": 37,
+      "label": "XXXVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Exhausted and barely conscious, Vis speaks this explanation aloud to Aequa and then collapses, frustrated that she stayed instead of running."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 112,
+      "book": "tsotf",
+      "indexInBook": 38,
+      "label": "XXXVIII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "On patrol, Rian first asks whether Vis really fought Gallchobhar and exposed his treachery, then casually reveals something more startling: Tara is King Rónán’…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 113,
+      "book": "tsotf",
+      "indexInBook": 39,
+      "label": "XXXIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "He recognizes the activation phrase Vis used and reveals that Lanistia spoke the same words seven years earlier after the Aurora Columnae and during Caeror’s I…"
+        },
+        {
+          "type": "death",
+          "label": "If the process continues too long, however, the person is absorbed, dies, and becomes a iunctus."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 114,
+      "book": "tsotf",
+      "indexInBook": 40,
+      "label": "XL",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "She reveals that the Overseers are controlled by a central Nomarch and makes clear that she wants Vis to use his strange power to seize that control point."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 115,
+      "book": "tsotf",
+      "indexInBook": 41,
+      "label": "XLI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The aftermath hardens the uneasy bargain between Vis and Netiqret: Vis extracts a promise that Ahmose will not be harmed again, while Netiqret reveals that the…"
+        },
+        {
+          "type": "death",
+          "label": "Vis kills one by severing his hand and driving the sabre through his mouth, then hacks down the second as it grapples with the enthralled iunctus."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 116,
+      "book": "tsotf",
+      "indexInBook": 42,
+      "label": "XLII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Veridius finally gives Vis the framework behind the Labyrinth and the coming threat: an ancient war with the Concurrence, the Rending that split the world into…"
+        },
+        {
+          "type": "death",
+          "label": "Livia reads the documents, reacts with affectionate sorrow, and asks who was responsible; Vis says it no longer matters because that person is dead."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 117,
+      "book": "tsotf",
+      "indexInBook": 43,
+      "label": "XLIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "Vis secretly meets Aequa and Eidhin in a clearing outside the Academy to call Diago, the alupi he believes he is mysteriously linked to after the Labyrinth."
+        },
+        {
+          "type": "major_event",
+          "label": "While they wait, the three friends talk through the impossible scale of what Veridius revealed about the coming Cataclysm and agree, uneasily, that making it p…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 118,
+      "book": "tsotf",
+      "indexInBook": 44,
+      "label": "XLIV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis suggests taking prisoners, but Tara argues that if Gallchobhar is working with Fiachra, letting any scouts escape will bring greater bloodshed."
+        },
+        {
+          "type": "death",
+          "label": "Vis tries to question him about Gallchobhar, but the captive refuses to cooperate, so Vis kills him cleanly."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 119,
+      "book": "tsotf",
+      "indexInBook": 45,
+      "label": "XLV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "After the fight, Tara's band hides for the night, and Vis admits that the distant rider who warned him felt like his executed father."
+        },
+        {
+          "type": "major_event",
+          "label": "Conor and Seanna realize that Vis may be using the nasceann despite never being trained, while Tara reveals that Gallchobhar helped maim her years earlier to s…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 120,
+      "book": "tsotf",
+      "indexInBook": 46,
+      "label": "XLVI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The chapter also opens a more important line of discovery when Kiya unexpectedly reveals specific information about the Amemet, the guarded route between templ…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 121,
+      "book": "tsotf",
+      "indexInBook": 47,
+      "label": "XLVII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Druid Lir arrives at the crannog with confirmation that war has begun after High King Úrthuile's death, and his report reveals that the Grove has openly backed…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 122,
+      "book": "tsotf",
+      "indexInBook": 48,
+      "label": "XLVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "During a deeply uneasy Pletuna festival, Relucia reveals that she herself survived years in a Sapper, explaining both her bitterness toward Caten’s system and…"
+        },
+        {
+          "type": "new_relationship",
+          "label": "Ulciscor meets them near the guarded Aurora Columnae and bluntly tells Vis that bringing Diago was a mistake."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 123,
+      "book": "tsotf",
+      "indexInBook": 49,
+      "label": "XLIX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Ostius then questions Vis about his disguise, and Vis reveals the Harmonic iron triangles he has forged into a false arm beneath his sleeve and into a full met…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 124,
+      "book": "tsotf",
+      "indexInBook": 50,
+      "label": "L",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The chapter shows both the practical ingenuity and the moral ugliness of the plan, especially when Netiqret reveals the compromising payment that secured Betre…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 125,
+      "book": "tsotf",
+      "indexInBook": 51,
+      "label": "LI",
+      "worlds": [
+        "Luceum",
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Ostius takes Vis and Diago through a crossing into Luceum, revealing a parallel world whose familiar geography hides a much harsher social order."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 126,
+      "book": "tsotf",
+      "indexInBook": 52,
+      "label": "LII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The discussion reveals a major internal crisis: some leaders want to answer Volenis with force, fearing that any weakness will encourage Governance, Religion,…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 127,
+      "book": "tsotf",
+      "indexInBook": 53,
+      "label": "LIII",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Forced to flee, Vis kills an Overseer in the Infernis and escapes injured, while his mission against Ka becomes far more dangerous because secrecy is gone."
+        },
+        {
+          "type": "major_event",
+          "label": "Forced to flee, Vis kills an Overseer in the Infernis and escapes injured, while his mission against Ka becomes far more dangerous because secrecy is gone."
+        },
+        {
+          "type": "new_relationship",
+          "label": "Vis returns to the appointed area and meets Netiqret, who has unexpectedly brought Kiya."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 128,
+      "book": "tsotf",
+      "indexInBook": 54,
+      "label": "LIV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Leathfhear challenges Tara in a ceremonial trial not because he expects to win, but because he must prove that he belongs beside his companions in the coming w…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 129,
+      "book": "tsotf",
+      "indexInBook": 55,
+      "label": "LV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis and Ostius seize Military’s inner chamber, where Vis captures an enormous reserve of Will and Ostius forces the senators to confess their roles in the naum…"
+        },
+        {
+          "type": "death",
+          "label": "The confrontation reveals that Vis’s family was murdered because his father learned too much about the Cataclysms and a feared weapon."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 130,
+      "book": "tsotf",
+      "indexInBook": 56,
+      "label": "LVI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Ahmose publicly denounces Ka and the lies of Duat, then kills himself in the Infernis to keep Ka from taking him and his knowledge."
+        },
+        {
+          "type": "major_event",
+          "label": "Ahmose’s death hardens Vis’s grief into purpose, giving him a new resolve to escape Duat and kill Ka."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 131,
+      "book": "tsotf",
+      "indexInBook": 57,
+      "label": "LVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis has only minutes to escape the Basilica after the slaughter in Military’s chamber."
+        },
+        {
+          "type": "death",
+          "label": "Vis runs through increasingly tense streets, realizing that Military will interpret the murders as a Senate attack and answer with immediate retaliation."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 132,
+      "book": "tsotf",
+      "indexInBook": 58,
+      "label": "LVIII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Separated from his companions so he can face Fornax, Deaglán travels with Lir and learns more about the schism that has split the druids, with Ruarc’s faction…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 133,
+      "book": "tsotf",
+      "indexInBook": 59,
+      "label": "LIX",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Deaglán is reunited with his supposedly dead father, who reveals that the Catenan Military revived him after execution with a Vitaerium."
+        },
+        {
+          "type": "major_event",
+          "label": "Deaglán is reunited with his supposedly dead father, who reveals that the Catenan Military revived him after execution with a Vitaerium."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 134,
+      "book": "tsotf",
+      "indexInBook": 60,
+      "label": "LX",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "His father also reveals that Ostius moved him between worlds to watch over Diago and believes Diago may be essential to preventing another catastrophe."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 135,
+      "book": "tsotf",
+      "indexInBook": 61,
+      "label": "LXI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "After proving Duat's guarded exits are impossible, Siamun prepares a desperate escape through the Infernis by embedding his Vitaeria under his skin and trainin…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 136,
+      "book": "tsotf",
+      "indexInBook": 62,
+      "label": "LXII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "When night falls, Lir leads him into the freezing water, reveals black eyes in the dim light, and activates the archway by touching its spiral symbol with his…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 137,
+      "book": "tsotf",
+      "indexInBook": 63,
+      "label": "LXIII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The activation reveals that the hall is not dormant at all and that Deaglan has triggered an ancient response."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 138,
+      "book": "tsotf",
+      "indexInBook": 64,
+      "label": "LXIV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Trapped in Fornax, Deaglán unexpectedly learns he can manipulate Will strongly enough to command one of the silver guardians, turning a fatal trial into a desp…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 139,
+      "book": "tsotf",
+      "indexInBook": 65,
+      "label": "LXV",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis bursts into Domus Telimus after a narrow escape from a street chase, wounded by a crossbow graze and furious at himself for walking into an obvious trap."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 140,
+      "book": "tsotf",
+      "indexInBook": 66,
+      "label": "LXVI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "new_relationship",
+          "label": "Baine Breac secretly meets Vis and gives him the intelligence needed to blunt Redivius's coming assault on Caten, including a feint at the docks and a main str…"
+        },
+        {
+          "type": "major_event",
+          "label": "Baine then reveals that Eidhin had an older twin, Cathair, who died when the Republic attacked four years earlier, and he argues that his own submission to the…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 141,
+      "book": "tsotf",
+      "indexInBook": 67,
+      "label": "LXVII",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Gallchobhar kills Lir when the druid refuses to explain Deaglan's strange passage through Fornax, then uses a brooch from Ruarc to inflict agony and cut Deagla…"
+        },
+        {
+          "type": "major_event",
+          "label": "Gallchobhar reveals that King Fiachra began besieging Caer Aras two days earlier and that Deaglan is being delivered as payment owed by Ruarc."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 142,
+      "book": "tsotf",
+      "indexInBook": 68,
+      "label": "LXVIII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Indol's revelation that Scipio is imprisoned and that Sapper prisoners may be killed during the attack pushes Vis and Aequa toward an urgent rescue, while news…"
+        },
+        {
+          "type": "major_event",
+          "label": "Vis walks through a devastated Caten, where the Festival of Pletuna has given way to open collapse."
+        },
+        {
+          "type": "new_relationship",
+          "label": "Vis then meets Aequa, Indol, Marcellus, and Felix in a side room to exchange information outside the formal chain of command."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 143,
+      "book": "tsotf",
+      "indexInBook": 69,
+      "label": "LXIX",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "When Vis opens the garden, he finds it withered rather than destroyed."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 144,
+      "book": "tsotf",
+      "indexInBook": 70,
+      "label": "LXX",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "minor_event",
+          "label": "Back in Qabr, Vis overcomes his fear of the forbidden golden chamber and discovers that the crook and flail inside are blood-activated weapons of immense destr…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 145,
+      "book": "tsotf",
+      "indexInBook": 71,
+      "label": "LXXI",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Tertius Decimus intercepts Vis and Aequa outside South Caten Prison, reveals Iro has died, and takes revenge by murdering Aequa and crippling Vis before leavin…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 146,
+      "book": "tsotf",
+      "indexInBook": 72,
+      "label": "LXXII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Vis pushes through South Caten Prison’s horror to free Lanistia and Ulciscor, discovering how brutally the abandoned prison system has been used during Caten’s…"
+        },
+        {
+          "type": "death",
+          "label": "The reunion between Lanistia and Ulciscor is brief and dryly familiar, but when the three reach the guardroom, Lanistia abruptly kills the two Septimii guards…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 147,
+      "book": "tsotf",
+      "indexInBook": 73,
+      "label": "LXXIII",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "The victory comes at extreme cost, because the bridge collapses under him and Vis survives only by plunging into the Infernis and escaping through a hidden dra…"
+        },
+        {
+          "type": "death",
+          "label": "An iunctus notices him, the nearby Overseer identifies the threat, and Vis kills the Overseer with the crook in a grotesque instant, horrifying the workers and…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 148,
+      "book": "tsotf",
+      "indexInBook": 74,
+      "label": "LXXIV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Tara infiltrates Gallchobhar’s camp and frees Deaglán, but their escape fails when Gallchobhar catches them and forces a public reckoning before the besieged C…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 149,
+      "book": "tsotf",
+      "indexInBook": 75,
+      "label": "LXXV",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Gallchobhar murders the surrendered Rónán and tries to drown Vis, but Vis's father saves him with the medallion and dies in his place."
+        },
+        {
+          "type": "major_event",
+          "label": "Gallchobhar's death and the collapse of his army also threaten Fiachra's position beyond this immediate fight."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 150,
+      "book": "tsotf",
+      "indexInBook": 76,
+      "label": "LXXVI",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "On the way back, Netiqret reveals that Kiya was taken by the Nomarch as a child, returned damaged through a hidden plot, and became the reason Netiqret spent d…"
+        },
+        {
+          "type": "death",
+          "label": "Priests took Kiya as a child for a surrogate system tied to the Nomarch; later, a controlled iunctus offered Netiqret a way to get Kiya back if Netiqret murder…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 151,
+      "book": "tsotf",
+      "indexInBook": 77,
+      "label": "LXXVII",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "To stop Eidhin from sacrificing himself, Vis reveals his true identity as Diago of Suus and confesses how fear let the Anguis use him."
+        },
+        {
+          "type": "death",
+          "label": "Moving through alleys to avoid stronger enemy groups, Vis forces himself to ignore people he cannot save, kills isolated attackers when necessary, and presses…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 152,
+      "book": "tsotf",
+      "indexInBook": 78,
+      "label": "LXXVIII",
+      "worlds": [
+        "Obiteum"
+      ],
+      "annotations": [
+        {
+          "type": "death",
+          "label": "Vis hesitates because he had expected a confrontation and wants answers, not an execution."
+        }
+      ]
+    },
+    {
+      "seriesIndex": 153,
+      "book": "tsotf",
+      "indexInBook": 79,
+      "label": "LXXIX",
+      "worlds": [
+        "Luceum"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "They also reveal that Ruarc surrendered that morning and asked to speak to Vis before anything is done to him."
+        },
+        {
+          "type": "new_relationship",
+          "label": "Tara explains that, here, the symbol means that his father was not of this world but belonged in it, and when they stop at her father’s cairn, Vis and Tara qui…"
+        }
+      ]
+    },
+    {
+      "seriesIndex": 154,
+      "book": "tsotf",
+      "indexInBook": 80,
+      "label": "LXXX",
+      "worlds": [
+        "Res"
+      ],
+      "annotations": [
+        {
+          "type": "major_event",
+          "label": "Between skirmishes he sends imbued metal shards into the sky to summon Ka, worries that his warning to Tertius Ericius may not have arrived in time, and nearly…"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,565 @@
+{
+  "_comment": "Manual world assignments for TSOTF (Book II). Valid worlds: 'Res', 'Luceum', 'Obiteum'. Edit the 'worlds' array on each chapter; order does not matter (rendering order is fixed Luceum -> Res -> Obiteum). Re-run scripts/build_series.py after edits.",
+  "chapters": [
+    {
+      "index": 1,
+      "label": "I",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 2,
+      "label": "II",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 3,
+      "label": "III",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 4,
+      "label": "IV",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 5,
+      "label": "V",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 6,
+      "label": "VI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 7,
+      "label": "VII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 8,
+      "label": "VIII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 9,
+      "label": "IX",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 10,
+      "label": "X",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 11,
+      "label": "XI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 12,
+      "label": "XII",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 13,
+      "label": "XIII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 14,
+      "label": "XIV",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 15,
+      "label": "XV",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 16,
+      "label": "XVI",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 17,
+      "label": "XVII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 18,
+      "label": "XVIII",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 19,
+      "label": "XIX",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 20,
+      "label": "XX",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 21,
+      "label": "XXI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 22,
+      "label": "XXII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 23,
+      "label": "XXIII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 24,
+      "label": "XXIV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 25,
+      "label": "XXV",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 26,
+      "label": "XXVI",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 27,
+      "label": "XXVII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 28,
+      "label": "XXVIII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 29,
+      "label": "XXIX",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 30,
+      "label": "XXX",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 31,
+      "label": "XXXI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 32,
+      "label": "XXXII",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 33,
+      "label": "XXXIII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 34,
+      "label": "XXXIV",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 35,
+      "label": "XXXV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 36,
+      "label": "XXXVI",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 37,
+      "label": "XXXVII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 38,
+      "label": "XXXVIII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 39,
+      "label": "XXXIX",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 40,
+      "label": "XL",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 41,
+      "label": "XLI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 42,
+      "label": "XLII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 43,
+      "label": "XLIII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 44,
+      "label": "XLIV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 45,
+      "label": "XLV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 46,
+      "label": "XLVI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 47,
+      "label": "XLVII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 48,
+      "label": "XLVIII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 49,
+      "label": "XLIX",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 50,
+      "label": "L",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 51,
+      "label": "LI",
+      "worlds": [
+        "Res", "Luceum"
+      ]
+    },
+    {
+      "index": 52,
+      "label": "LII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 53,
+      "label": "LIII",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 54,
+      "label": "LIV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 55,
+      "label": "LV",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 56,
+      "label": "LVI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 57,
+      "label": "LVII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 58,
+      "label": "LVIII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 59,
+      "label": "LIX",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 60,
+      "label": "LX",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 61,
+      "label": "LXI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 62,
+      "label": "LXII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 63,
+      "label": "LXIII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 64,
+      "label": "LXIV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 65,
+      "label": "LXV",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 66,
+      "label": "LXVI",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 67,
+      "label": "LXVII",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 68,
+      "label": "LXVIII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 69,
+      "label": "LXIX",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 70,
+      "label": "LXX",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 71,
+      "label": "LXXI",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 72,
+      "label": "LXXII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 73,
+      "label": "LXXIII",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 74,
+      "label": "LXXIV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 75,
+      "label": "LXXV",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 76,
+      "label": "LXXVI",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 77,
+      "label": "LXXVII",
+      "worlds": [
+        "Res"
+      ]
+    },
+    {
+      "index": 78,
+      "label": "LXXVIII",
+      "worlds": [
+        "Obiteum"
+      ]
+    },
+    {
+      "index": 79,
+      "label": "LXXIX",
+      "worlds": [
+        "Luceum"
+      ]
+    },
+    {
+      "index": 80,
+      "label": "LXXX",
+      "worlds": [
+        "Res"
+      ]
+    }
+  ]
+}

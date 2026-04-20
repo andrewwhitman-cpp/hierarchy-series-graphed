@@ -1,0 +1,128 @@
+:root {
+  color-scheme: dark;
+  --bg: #0c0e12;
+  --panel: #12151c;
+  --text: #e8eaef;
+  --text-muted: #8b919c;
+  --split-line: #3d4452;
+  --axis-grid: rgba(139, 145, 156, 0.22);
+  --axis-tick: #8b919c;
+  --boundary-tsotf: #f0c674;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4rem;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 68ch;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.world-line-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.annotation {
+  cursor: pointer;
+  outline: none;
+}
+
+.annotation:focus-visible circle {
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.annot-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.annot-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.annot-legend-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.chart-tooltip {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 10px));
+  background: var(--panel);
+  border: 1px solid var(--split-line);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+  min-width: 200px;
+  max-width: 340px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tooltip-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.15rem;
+}
+
+.tooltip-chapter {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.tooltip-label {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text);
+}

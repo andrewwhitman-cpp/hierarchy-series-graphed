@@ -1,0 +1,17 @@
+{
+  "books": [
+    {
+      "slug": "twotm",
+      "title": "The Will of the Many",
+      "chapterCount": 74,
+      "dataFile": "content/sparknotes/twotm-chapters.json"
+    },
+    {
+      "slug": "tsotf",
+      "title": "The Strength of the Few",
+      "chapterCount": 80,
+      "dataFile": "content/sparknotes/tsotf-chapters.json"
+    }
+  ],
+  "fetchedAt": "2026-04-19T20:18:29Z"
+}

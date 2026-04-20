@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+*.log
+.env
+content/viz/.llm-scores-cache.jsonl
+content/viz/llm-scores.json
