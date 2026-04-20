@@ -5,12 +5,12 @@ import type {
   WorldId,
 } from "../types";
 
-const VB_W = 1240;
-const VB_H = 500;
-const PAD_L = 128;
-const PAD_R = 116;
-const ANNOT_BAND_H = 108;
-const AXIS_BAND_H = 56;
+const VB_W = 1600;
+const VB_H = 900;
+const PAD_L = 132;
+const PAD_R = 120;
+const ANNOT_BAND_H = 130;
+const AXIS_BAND_H = 72;
 const PLOT_TOP = ANNOT_BAND_H;
 const PLOT_BOTTOM = VB_H - AXIS_BAND_H;
 const PLOT_H = PLOT_BOTTOM - PLOT_TOP;
@@ -33,9 +33,9 @@ const WORLD_ACCENT: Record<WorldId, string> = {
 };
 
 const TRACK_Y: Record<WorldId, number> = {
-  Luceum: PLOT_TOP + PLOT_H * 0.2,
+  Luceum: PLOT_TOP + PLOT_H * 0.08,
   Res: PLOT_TOP + PLOT_H * 0.5,
-  Obiteum: PLOT_TOP + PLOT_H * 0.8,
+  Obiteum: PLOT_TOP + PLOT_H * 0.92,
 };
 
 const WORLD_ORDER: WorldId[] = ["Luceum", "Res", "Obiteum"];
@@ -250,6 +250,7 @@ export function WorldLineChart({ chapters }: Props) {
       <svg
         className="world-line-chart"
         viewBox={`0 0 ${VB_W} ${VB_H}`}
+        preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label="Novel world-line chart"
       >
