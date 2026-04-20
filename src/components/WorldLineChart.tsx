@@ -5,21 +5,20 @@ import type {
   WorldId,
 } from "../types";
 
-const VB_W = 800;
-const PAD_T = 150;
-const PAD_B = 56;
-const CHAPTER_STEP = 8;
+const VB_W = 1240;
+const VB_H = 500;
+const PAD_L = 128;
+const PAD_R = 24;
+const ANNOT_BAND_H = 108;
+const AXIS_BAND_H = 56;
+const PLOT_TOP = ANNOT_BAND_H;
+const PLOT_BOTTOM = VB_H - AXIS_BAND_H;
+const PLOT_H = PLOT_BOTTOM - PLOT_TOP;
 
-const STRAND_LEFT = 104;
-const STRAND_W = 220;
-
-const ANNOT_COL_START = 404;
-const ANNOT_COL_STEP = 68;
-
-const TRACK_X: Record<WorldId, number> = {
-  Luceum: STRAND_LEFT + STRAND_W * 0.2,
-  Res: STRAND_LEFT + STRAND_W * 0.5,
-  Obiteum: STRAND_LEFT + STRAND_W * 0.8,
+const TRACK_Y: Record<WorldId, number> = {
+  Luceum: PLOT_TOP + PLOT_H * 0.2,
+  Res: PLOT_TOP + PLOT_H * 0.5,
+  Obiteum: PLOT_TOP + PLOT_H * 0.8,
 };
 
 const WORLD_ORDER: WorldId[] = ["Luceum", "Res", "Obiteum"];
@@ -40,10 +39,10 @@ const ANNOT_LABELS: Record<AnnotationType, string> = {
   minor_event: "Minor event",
 };
 
-// Column order (left -> right) for annotation markers. Same-type markers all sit
-// in the same vertical column, so scanning for every "Death" (etc.) is a
-// single-column sweep.
-const ANNOT_COL_ORDER: AnnotationType[] = [
+// Row order (top -> bottom) for annotation markers. Same-type markers all sit
+// on the same horizontal line, so scanning for every "Death" (etc.) is a
+// single-row sweep.
+const ANNOT_ROW_ORDER: AnnotationType[] = [
   "new_relationship",
   "major_relationship_change",
   "death",
@@ -51,11 +50,11 @@ const ANNOT_COL_ORDER: AnnotationType[] = [
   "minor_event",
 ];
 
-const ANNOT_COL_X: Record<AnnotationType, number> = Object.fromEntries(
-  ANNOT_COL_ORDER.map((t, i) => [t, ANNOT_COL_START + i * ANNOT_COL_STEP])
+const ANNOT_ROW_STEP = 14;
+const ANNOT_ROW_TOP = 14;
+const ANNOT_ROW_Y: Record<AnnotationType, number> = Object.fromEntries(
+  ANNOT_ROW_ORDER.map((t, i) => [t, ANNOT_ROW_TOP + i * ANNOT_ROW_STEP])
 ) as Record<AnnotationType, number>;
-
-const LAST_COL_X = ANNOT_COL_X[ANNOT_COL_ORDER[ANNOT_COL_ORDER.length - 1]];
 
 const STRAND_COLOR = "#e8eaef";
 const STRAND_WIDTH = 1.75;
@@ -71,23 +70,23 @@ interface Segment {
   y2: number;
 }
 
-function xForWorld(book: "twotm" | "tsotf", world: WorldId): number {
-  if (book === "twotm") return TRACK_X.Res;
-  return TRACK_X[world];
+function yForWorld(book: "twotm" | "tsotf", world: WorldId): number {
+  if (book === "twotm") return TRACK_Y.Res;
+  return TRACK_Y[world];
 }
 
-/** For each chapter, the X position of each actual world it inhabits. */
-function chapterWorldXs(chapters: ChapterPoint[]): number[][] {
-  return chapters.map((ch) => ch.worlds.map((w) => xForWorld(ch.book, w)));
+/** For each chapter, the Y position of each actual world it inhabits. */
+function chapterWorldYs(chapters: ChapterPoint[]): number[][] {
+  return chapters.map((ch) => ch.worlds.map((w) => yForWorld(ch.book, w)));
 }
 
 /**
- * Pair endpoints of chapter A with endpoints of chapter B so the strand moves
- * between tracks rather than running a ghost line on a world that isn't in
- * the chapter. Rules:
+ * Pair endpoints of chapter A with endpoints of chapter B so the line moves
+ * between tracks rather than running a ghost strand on a world that isn't
+ * in the chapter. Rules:
  *   1. Identity matches (same world in A and B) pair first.
- *   2. Unmatched A endpoints merge into whichever B endpoint is nearest in X.
- *   3. Unmatched B endpoints emerge from whichever A endpoint is nearest in X.
+ *   2. Unmatched A endpoints merge into whichever B endpoint is nearest in Y.
+ *   3. Unmatched B endpoints emerge from whichever A endpoint is nearest in Y.
  */
 function pairEndpoints(aWorlds: WorldId[], bWorlds: WorldId[]): [number, number][] {
   const pairs: [number, number][] = [];
@@ -103,15 +102,15 @@ function pairEndpoints(aWorlds: WorldId[], bWorlds: WorldId[]): [number, number]
     }
   });
 
-  const aXs = aWorlds.map((w) => TRACK_X[w]);
-  const bXs = bWorlds.map((w) => TRACK_X[w]);
+  const aYs = aWorlds.map((w) => TRACK_Y[w]);
+  const bYs = bWorlds.map((w) => TRACK_Y[w]);
 
   aWorlds.forEach((_w, ai) => {
     if (matchedA.has(ai)) return;
     let bestBi = 0;
     let bestDist = Infinity;
-    bXs.forEach((bx, bi) => {
-      const d = Math.abs(aXs[ai] - bx);
+    bYs.forEach((by, bi) => {
+      const d = Math.abs(aYs[ai] - by);
       if (d < bestDist) {
         bestDist = d;
         bestBi = bi;
@@ -125,8 +124,8 @@ function pairEndpoints(aWorlds: WorldId[], bWorlds: WorldId[]): [number, number]
     if (pairs.some((p) => p[1] === bi)) return;
     let bestAi = 0;
     let bestDist = Infinity;
-    aXs.forEach((ax, ai) => {
-      const d = Math.abs(ax - bXs[bi]);
+    aYs.forEach((ay, ai) => {
+      const d = Math.abs(ay - bYs[bi]);
       if (d < bestDist) {
         bestDist = d;
         bestAi = ai;
@@ -138,33 +137,33 @@ function pairEndpoints(aWorlds: WorldId[], bWorlds: WorldId[]): [number, number]
   return pairs;
 }
 
-function buildSegments(chapters: ChapterPoint[], yFor: (i: number) => number): Segment[] {
+function buildSegments(chapters: ChapterPoint[], xFor: (i: number) => number): Segment[] {
   const segments: Segment[] = [];
-  const xs = chapterWorldXs(chapters);
+  const ys = chapterWorldYs(chapters);
   for (let i = 0; i < chapters.length - 1; i++) {
     const a = chapters[i];
     const b = chapters[i + 1];
     if (a.worlds.length === 0 || b.worlds.length === 0) continue;
-    const y1 = yFor(i);
-    const y2 = yFor(i + 1);
+    const x1 = xFor(i);
+    const x2 = xFor(i + 1);
     const pairs = pairEndpoints(a.worlds, b.worlds);
     for (const [ai, bi] of pairs) {
-      segments.push({ x1: xs[i][ai], y1, x2: xs[i + 1][bi], y2 });
+      segments.push({ x1, y1: ys[i][ai], x2, y2: ys[i + 1][bi] });
     }
   }
   return segments;
 }
 
 function segmentPath(s: Segment): string {
-  const my = (s.y1 + s.y2) / 2;
-  return `M ${s.x1} ${s.y1} C ${s.x1} ${my}, ${s.x2} ${my}, ${s.x2} ${s.y2}`;
+  const mx = (s.x1 + s.x2) / 2;
+  return `M ${s.x1} ${s.y1} C ${mx} ${s.y1}, ${mx} ${s.y2}, ${s.x2} ${s.y2}`;
 }
 
-/** X of the right-most strand present at this chapter. Used to anchor the
- *  annotation tick line to the actual line. */
-function rightmostStrandX(chapter: ChapterPoint): number {
-  if (chapter.worlds.length === 0) return TRACK_X.Res;
-  return Math.max(...chapter.worlds.map((w) => xForWorld(chapter.book, w)));
+/** Y of the top-most (smallest Y) strand present at this chapter. Used to
+ *  anchor the annotation tick line to the actual line. */
+function topStrandY(chapter: ChapterPoint): number {
+  if (chapter.worlds.length === 0) return TRACK_Y.Res;
+  return Math.min(...chapter.worlds.map((w) => yForWorld(chapter.book, w)));
 }
 
 interface HoverState {
@@ -179,20 +178,21 @@ export function WorldLineChart({ chapters }: Props) {
 
   const geometry = useMemo(() => {
     const n = chapters.length;
-    const vbH = PAD_T + CHAPTER_STEP * Math.max(n - 1, 0) + PAD_B;
-    const yFor = (i: number) => PAD_T + CHAPTER_STEP * i;
+    const innerW = VB_W - PAD_L - PAD_R;
+    const step = n > 1 ? innerW / (n - 1) : 0;
+    const xFor = (i: number) => PAD_L + step * i;
 
-    const segments = buildSegments(chapters, yFor);
+    const segments = buildSegments(chapters, xFor);
 
     const forkIdx = chapters.findIndex((c) => c.book === "tsotf");
-    const forkY = forkIdx > 0 ? (yFor(forkIdx - 1) + yFor(forkIdx)) / 2 : yFor(0);
+    const forkX = forkIdx > 0 ? (xFor(forkIdx - 1) + xFor(forkIdx)) / 2 : xFor(0);
 
     const annotations: {
       chapterIdx: number;
       annotationIdx: number;
-      y: number;
-      markerX: number;
-      tickX: number;
+      x: number;
+      markerY: number;
+      tickY: number;
       color: string;
       label: string;
       type: AnnotationType;
@@ -200,15 +200,15 @@ export function WorldLineChart({ chapters }: Props) {
 
     chapters.forEach((ch, ci) => {
       ch.annotations.forEach((ann, ai) => {
-        const y = yFor(ci);
-        const tickX = rightmostStrandX(ch);
-        const markerX = ANNOT_COL_X[ann.type];
+        const x = xFor(ci);
+        const tickY = topStrandY(ch);
+        const markerY = ANNOT_ROW_Y[ann.type];
         annotations.push({
           chapterIdx: ci,
           annotationIdx: ai,
-          y,
-          markerX,
-          tickX,
+          x,
+          markerY,
+          tickY,
           color: ANNOT_COLORS[ann.type],
           label: ann.label,
           type: ann.type,
@@ -216,12 +216,12 @@ export function WorldLineChart({ chapters }: Props) {
       });
     });
 
-    return { yFor, segments, forkY, forkIdx, annotations, vbH };
+    return { xFor, segments, forkX, forkIdx, annotations };
   }, [chapters]);
 
-  const { segments, forkY, forkIdx, annotations, yFor, vbH } = geometry;
+  const { segments, forkX, forkIdx, annotations, xFor } = geometry;
 
-  const twotmLastY = forkIdx > 0 ? yFor(forkIdx - 1) : yFor(chapters.length - 1);
+  const twotmLastX = forkIdx > 0 ? xFor(forkIdx - 1) : xFor(chapters.length - 1);
 
   const hoveredAnnotation = hover
     ? chapters[hover.chapterIdx].annotations[hover.annotationIdx]
@@ -230,226 +230,219 @@ export function WorldLineChart({ chapters }: Props) {
 
   return (
     <div className="chart-wrap">
-      <div className="chart-svg-wrap">
-        <svg
-          className="world-line-chart"
-          viewBox={`0 0 ${VB_W} ${vbH}`}
-          role="img"
-          aria-label="Novel world-line chart"
-        >
-          {/* Annotation column guides + headers */}
-          {ANNOT_COL_ORDER.map((t) => (
-            <g key={`annot-col-${t}`} className="annot-col">
-              <line
-                x1={ANNOT_COL_X[t]}
-                x2={ANNOT_COL_X[t]}
-                y1={PAD_T}
-                y2={vbH - PAD_B}
-                stroke="var(--axis-grid)"
-                strokeWidth={0.75}
-                strokeDasharray="2 6"
-                opacity={0.55}
-              />
-              <text
-                x={ANNOT_COL_X[t]}
-                y={PAD_T - 12}
-                transform={`rotate(-45 ${ANNOT_COL_X[t]} ${PAD_T - 12})`}
-                textAnchor="start"
-                fill="var(--text-muted)"
-                fontSize={9.5}
-                letterSpacing="0.06em"
-              >
-                {ANNOT_LABELS[t].toUpperCase()}
-              </text>
-            </g>
-          ))}
+      <svg
+        className="world-line-chart"
+        viewBox={`0 0 ${VB_W} ${VB_H}`}
+        role="img"
+        aria-label="Novel world-line chart"
+      >
+        {/* Annotation row guides + labels (one row per annotation type) */}
+        {ANNOT_ROW_ORDER.map((t) => (
+          <g key={`annot-row-${t}`} className="annot-row">
+            <line
+              x1={PAD_L}
+              x2={VB_W - PAD_R}
+              y1={ANNOT_ROW_Y[t]}
+              y2={ANNOT_ROW_Y[t]}
+              stroke="var(--axis-grid)"
+              strokeWidth={0.75}
+              strokeDasharray="2 6"
+              opacity={0.55}
+            />
+            <text
+              x={PAD_L - 8}
+              y={ANNOT_ROW_Y[t] + 3}
+              textAnchor="end"
+              fill="var(--text-muted)"
+              fontSize={9.5}
+              letterSpacing="0.06em"
+            >
+              {ANNOT_LABELS[t].toUpperCase()}
+            </text>
+          </g>
+        ))}
 
-          {/* World track guides (TSOTF region) */}
-          {WORLD_ORDER.map((world) => (
-            <g key={`guide-${world}`} className="track-guide">
+        {/* Track guides (TSOTF region) */}
+        {WORLD_ORDER.map((world) => (
+          <g key={`guide-${world}`} className="track-guide">
+            <line
+              x1={forkX}
+              x2={VB_W - PAD_R}
+              y1={TRACK_Y[world]}
+              y2={TRACK_Y[world]}
+              stroke="var(--axis-grid)"
+              strokeWidth={1}
+              strokeDasharray="3 5"
+            />
+            <text
+              x={forkX + 6}
+              y={TRACK_Y[world] - 6}
+              className="track-label"
+              fill="var(--text-muted)"
+              fontSize={11}
+              letterSpacing="0.06em"
+            >
+              {world.toUpperCase()}
+            </text>
+          </g>
+        ))}
+
+        {/* Single Res guide across TWOTM region */}
+        <line
+          x1={PAD_L}
+          x2={forkX}
+          y1={TRACK_Y.Res}
+          y2={TRACK_Y.Res}
+          stroke="var(--axis-grid)"
+          strokeWidth={1}
+          strokeDasharray="3 5"
+        />
+
+        {/* Book divider */}
+        <line
+          x1={forkX}
+          x2={forkX}
+          y1={PLOT_TOP - 6}
+          y2={PLOT_BOTTOM + 6}
+          stroke="var(--boundary-tsotf)"
+          strokeWidth={1.25}
+          strokeDasharray="2 4"
+          opacity={0.7}
+        />
+        <text
+          x={(PAD_L + twotmLastX) / 2}
+          y={PLOT_BOTTOM + 38}
+          textAnchor="middle"
+          fill="var(--text-muted)"
+          fontSize={11}
+          letterSpacing="0.08em"
+        >
+          BOOK I — THE WILL OF THE MANY
+        </text>
+        <text
+          x={(forkX + (VB_W - PAD_R)) / 2}
+          y={PLOT_BOTTOM + 38}
+          textAnchor="middle"
+          fill="var(--text-muted)"
+          fontSize={11}
+          letterSpacing="0.08em"
+        >
+          BOOK II — THE STRENGTH OF THE FEW
+        </text>
+
+        {/* Strand segments: one cubic per adjacent-chapter endpoint pair */}
+        <g className="strand-segments">
+          {segments.map((s, idx) => (
+            <path
+              key={`seg-${idx}`}
+              d={segmentPath(s)}
+              fill="none"
+              stroke={STRAND_COLOR}
+              strokeWidth={STRAND_WIDTH}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              opacity={0.94}
+            />
+          ))}
+        </g>
+
+        {/* Annotation ticks + markers */}
+        {annotations.map((a) => {
+          const isHovered = hover?.chapterIdx === a.chapterIdx && hover?.annotationIdx === a.annotationIdx;
+          return (
+            <g
+              key={`ann-${a.chapterIdx}-${a.annotationIdx}`}
+              className="annotation"
+              onMouseEnter={() =>
+                setHover({
+                  chapterIdx: a.chapterIdx,
+                  annotationIdx: a.annotationIdx,
+                  x: a.x,
+                  y: a.markerY,
+                })
+              }
+              onMouseLeave={() => setHover(null)}
+              onFocus={() =>
+                setHover({
+                  chapterIdx: a.chapterIdx,
+                  annotationIdx: a.annotationIdx,
+                  x: a.x,
+                  y: a.markerY,
+                })
+              }
+              onBlur={() => setHover(null)}
+              tabIndex={0}
+              role="button"
+              aria-label={`${ANNOT_LABELS[a.type]}: ${a.label}`}
+            >
               <line
-                x1={TRACK_X[world]}
-                x2={TRACK_X[world]}
-                y1={forkY}
-                y2={vbH - PAD_B}
-                stroke="var(--axis-grid)"
+                x1={a.x}
+                x2={a.x}
+                y1={a.markerY + 4}
+                y2={a.tickY}
+                stroke={a.color}
+                strokeWidth={isHovered ? 1.6 : 0.6}
+                opacity={isHovered ? 0.95 : 0.18}
+              />
+              <circle
+                cx={a.x}
+                cy={a.markerY}
+                r={isHovered ? 5.5 : 4}
+                fill={a.color}
+                stroke="var(--bg)"
+                strokeWidth={1.25}
+              />
+              <title>{`${ANNOT_LABELS[a.type]} — ${chapters[a.chapterIdx].label}\n${a.label}`}</title>
+            </g>
+          );
+        })}
+
+        {/* Axis bottom: sparse chapter ticks */}
+        {chapters.map((_ch, i) => {
+          const show = i === 0 || i === chapters.length - 1 || (i + 1) % 10 === 0 || i === forkIdx;
+          if (!show) return null;
+          return (
+            <g key={`tick-${i}`}>
+              <line
+                x1={xFor(i)}
+                x2={xFor(i)}
+                y1={PLOT_BOTTOM}
+                y2={PLOT_BOTTOM + 4}
+                stroke="var(--axis-tick)"
                 strokeWidth={1}
-                strokeDasharray="3 5"
               />
               <text
-                x={TRACK_X[world]}
-                y={forkY + 16}
-                className="track-label"
+                x={xFor(i)}
+                y={PLOT_BOTTOM + 14}
                 textAnchor="middle"
                 fill="var(--text-muted)"
-                fontSize={11}
-                letterSpacing="0.06em"
+                fontSize={10}
               >
-                {world.toUpperCase()}
+                {i + 1}
               </text>
             </g>
-          ))}
+          );
+        })}
+      </svg>
 
-          {/* Single Res guide across TWOTM region */}
-          <line
-            x1={TRACK_X.Res}
-            x2={TRACK_X.Res}
-            y1={PAD_T}
-            y2={forkY}
-            stroke="var(--axis-grid)"
-            strokeWidth={1}
-            strokeDasharray="3 5"
-          />
-
-          {/* Book divider */}
-          <line
-            x1={STRAND_LEFT - 14}
-            x2={LAST_COL_X + 14}
-            y1={forkY}
-            y2={forkY}
-            stroke="var(--boundary-tsotf)"
-            strokeWidth={1.25}
-            strokeDasharray="2 4"
-            opacity={0.7}
-          />
-          <text
-            x={28}
-            y={(PAD_T + twotmLastY) / 2}
-            transform={`rotate(-90 28 ${(PAD_T + twotmLastY) / 2})`}
-            textAnchor="middle"
-            fill="var(--text-muted)"
-            fontSize={11}
-            letterSpacing="0.08em"
-          >
-            BOOK I — THE WILL OF THE MANY
-          </text>
-          <text
-            x={28}
-            y={(forkY + (vbH - PAD_B)) / 2}
-            transform={`rotate(-90 28 ${(forkY + (vbH - PAD_B)) / 2})`}
-            textAnchor="middle"
-            fill="var(--text-muted)"
-            fontSize={11}
-            letterSpacing="0.08em"
-          >
-            BOOK II — THE STRENGTH OF THE FEW
-          </text>
-
-          {/* Strand segments: one cubic per adjacent-chapter endpoint pair */}
-          <g className="strand-segments">
-            {segments.map((s, idx) => (
-              <path
-                key={`seg-${idx}`}
-                d={segmentPath(s)}
-                fill="none"
-                stroke={STRAND_COLOR}
-                strokeWidth={STRAND_WIDTH}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity={0.94}
-              />
-            ))}
-          </g>
-
-          {/* Annotation ticks + markers */}
-          {annotations.map((a) => {
-            const isHovered =
-              hover?.chapterIdx === a.chapterIdx && hover?.annotationIdx === a.annotationIdx;
-            return (
-              <g
-                key={`ann-${a.chapterIdx}-${a.annotationIdx}`}
-                className="annotation"
-                onMouseEnter={() =>
-                  setHover({
-                    chapterIdx: a.chapterIdx,
-                    annotationIdx: a.annotationIdx,
-                    x: a.markerX,
-                    y: a.y,
-                  })
-                }
-                onMouseLeave={() => setHover(null)}
-                onFocus={() =>
-                  setHover({
-                    chapterIdx: a.chapterIdx,
-                    annotationIdx: a.annotationIdx,
-                    x: a.markerX,
-                    y: a.y,
-                  })
-                }
-                onBlur={() => setHover(null)}
-                tabIndex={0}
-                role="button"
-                aria-label={`${ANNOT_LABELS[a.type]}: ${a.label}`}
-              >
-                <line
-                  x1={a.tickX}
-                  x2={a.markerX - 4}
-                  y1={a.y}
-                  y2={a.y}
-                  stroke={a.color}
-                  strokeWidth={isHovered ? 1.6 : 0.6}
-                  opacity={isHovered ? 0.95 : 0.18}
-                />
-                <circle
-                  cx={a.markerX}
-                  cy={a.y}
-                  r={isHovered ? 5 : 3.6}
-                  fill={a.color}
-                  stroke="var(--bg)"
-                  strokeWidth={1.25}
-                />
-                <title>{`${ANNOT_LABELS[a.type]} — ${chapters[a.chapterIdx].label}\n${a.label}`}</title>
-              </g>
-            );
-          })}
-
-          {/* Chapter ticks along the left */}
-          {chapters.map((_ch, i) => {
-            const show = i === 0 || i === chapters.length - 1 || (i + 1) % 10 === 0 || i === forkIdx;
-            if (!show) return null;
-            return (
-              <g key={`tick-${i}`}>
-                <line
-                  x1={STRAND_LEFT - 6}
-                  x2={STRAND_LEFT - 2}
-                  y1={yFor(i)}
-                  y2={yFor(i)}
-                  stroke="var(--axis-tick)"
-                  strokeWidth={1}
-                />
-                <text
-                  x={STRAND_LEFT - 10}
-                  y={yFor(i) + 3}
-                  textAnchor="end"
-                  fill="var(--text-muted)"
-                  fontSize={10}
-                >
-                  {i + 1}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-
-        {hover && hoveredAnnotation && hoveredChapter ? (
-          <div
-            className="chart-tooltip"
-            style={{
-              left: `${(hover.x / VB_W) * 100}%`,
-              top: `${(hover.y / vbH) * 100}%`,
-            }}
-            role="status"
-          >
-            <div className="tooltip-type" style={{ color: ANNOT_COLORS[hoveredAnnotation.type] }}>
-              {ANNOT_LABELS[hoveredAnnotation.type]}
-            </div>
-            <div className="tooltip-chapter">
-              {hoveredChapter.book === "twotm" ? "TWOTM" : "TSOTF"} · {hoveredChapter.label}
-            </div>
-            <div className="tooltip-label">{hoveredAnnotation.label}</div>
+      {hover && hoveredAnnotation && hoveredChapter ? (
+        <div
+          className="chart-tooltip"
+          style={{
+            left: `${(hover.x / VB_W) * 100}%`,
+            top: `${(hover.y / VB_H) * 100}%`,
+          }}
+          role="status"
+        >
+          <div className="tooltip-type" style={{ color: ANNOT_COLORS[hoveredAnnotation.type] }}>
+            {ANNOT_LABELS[hoveredAnnotation.type]}
           </div>
-        ) : null}
-      </div>
+          <div className="tooltip-chapter">
+            {hoveredChapter.book === "twotm" ? "TWOTM" : "TSOTF"} · {hoveredChapter.label}
+          </div>
+          <div className="tooltip-label">{hoveredAnnotation.label}</div>
+        </div>
+      ) : null}
 
       <ul className="annot-legend" aria-label="Annotation types">
         {(Object.keys(ANNOT_LABELS) as AnnotationType[]).map((t) => (
