@@ -121,10 +121,6 @@
       ],
       "annotations": [
         {
-          "type": "death",
-          "label": "At the crash site, Ulciscor executes a suspected saboteur, but a hidden archer drops him with an arrow"
-        },
-        {
           "type": "reveal",
           "label": "He uncovers an access hatch and ushers Vis onto a narrow stone support beneath the carriage, sealing the inferno above them"
         }
@@ -146,10 +142,6 @@
         {
           "type": "action",
           "label": "Vis (Diago) defeats the remaining raiders but is wounded, then faces an Anguis archer from the Theatre who reveals the Anguis engineered the raid to reach him and want him trained to infiltrate the Academy as a future Domitor"
-        },
-        {
-          "type": "death",
-          "label": "Sedotia then sets an ultimatum: meet her at a naumachia in Caten during the Festival of Jovan in one month or she will expose his identity, potentially triggering his execution and political chaos the Anguis can exploit"
         }
       ]
     },
@@ -222,10 +214,6 @@
         {
           "type": "reveal",
           "label": "Settling at Villa Telimus, Vis discovers Ulciscor’s secrecy runs deep—Relucia hasn’t been told of the adoption, house security likely tracks him, and private plans hinge on high stakes"
-        },
-        {
-          "type": "death",
-          "label": "Ulciscor and Lanistia link the Transvect ambush to the Anguis and Melior, weigh unsettling murders and Corrector tests, and debate Vis’s reliability"
         }
       ]
     },
@@ -283,10 +271,6 @@
         {
           "type": "breakthrough",
           "label": "Back below, Lanistia replaces the shattered onyx and lets the bracer re-engrave the correct symbol, deferring detailed mechanics until Vis masters the system"
-        },
-        {
-          "type": "death",
-          "label": "After mounting frustration, he executes one correct move, a small but real success"
         }
       ]
     },
@@ -314,10 +298,6 @@
         "Res"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "She forcefully rejects rumors of Caeror’s suicide, asserting Veridius killed him"
-        },
         {
           "type": "action",
           "label": "The conversation turns to Magnus Quartus Advenius Claudius’s offer of protection and his investigation into the Transvect attack"
@@ -388,7 +368,7 @@
       "annotations": [
         {
           "type": "death",
-          "label": "After a tense exchange about complicity and resistance, Estevan abruptly kills himself with the stylus, leaving the outcome of his deadly working uncertain"
+          "label": "Estevan abruptly kills himself with the stylus"
         }
       ]
     },
@@ -408,10 +388,6 @@
         {
           "type": "reveal",
           "label": "Ulciscor finally shares the truth about Caeror, Lanistia, and Veridius—coded evidence and memories that point to a concealed, pre-Cataclysm discovery and a likely murder"
-        },
-        {
-          "type": "death",
-          "label": "Kadmos greets him warmly, and Ulciscor arrives to debrief him: the Arena disaster killed more than a third present and weakened many Will pyramids, causing citywide failures and crashes"
         },
         {
           "type": "action",
@@ -477,10 +453,6 @@
         "Res"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "Challenged, Vis ends the confrontation by stating, “Because I killed him,” about Melior, which disperses the would-be bullies"
-        }
       ]
     },
     {
@@ -614,10 +586,6 @@
       ],
       "annotations": [
         {
-          "type": "death",
-          "label": "Eidhin joins him unannounced and bluntly asks—in Cymrian—if Vis killed someone the previous night"
-        },
-        {
           "type": "reveal",
           "label": "Eidhin admits the day was “not such a bad day,” and Vis leaves buoyed by their nascent rapport"
         }
@@ -730,10 +698,6 @@
         "Res"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "Vis sprints for the coast, rescues an injured alupi pup, then executes a perilous plan to reboard the returning Transvect by grappling from the sea"
-        }
       ]
     },
     {
@@ -834,7 +798,7 @@
           "label": "Eidhin then reveals that on Vis’s first day, Principalis Veridius suggested Eidhin publicly knock down Callidus to satisfy those targeting Callidus’s father and hinted at help with a prior problem"
         },
         {
-          "type": "death",
+          "type": "reveal",
           "label": "As they walk back, Eidhin confides a darker truth: before the Academy he spent almost a year in a Sapper because he killed three Praetorians"
         }
       ]
@@ -868,10 +832,6 @@
         "Res"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "She admits the Anguis murdered a student to enable his promotion, reveals she orchestrated the Suus trip around a Military summit, and orders him to spy on its private session"
-        },
         {
           "type": "reveal",
           "label": "She admits the Anguis murdered a student to enable his promotion, reveals she orchestrated the Suus trip around a Military summit, and orders him to spy on its private session"
@@ -983,10 +943,6 @@
         {
           "type": "reveal",
           "label": "He confirms the royal family’s hanging and reveals Quartus Latani—who ordered the killings—is on the island"
-        },
-        {
-          "type": "death",
-          "label": "He offers to arrange justice, but Vis refuses, noting it would lead to Fadrique’s execution in a Sapper and harm Suus"
         }
       ]
     },
@@ -1034,20 +990,8 @@
       ],
       "annotations": [
         {
-          "type": "death",
-          "label": "Vis executes a calculated public gambit to force Belli into a high-stakes Foundation match, wagering his factional allegiance against her Class Three spot"
-        },
-        {
           "type": "ally_or_betrayal",
-          "label": "Vis then proposes terms: if he loses, he pledges to Governance; if he wins, he takes Belli’s Class Three seat"
-        },
-        {
-          "type": "reveal",
-          "label": "As the game unfolds, Belli plays aggressively from an early advantage, but Vis deliberately channels exchanges to reset the board and then orchestrates controlled skirmishes to expose her pyramid"
-        },
-        {
-          "type": "action",
-          "label": "Overwhelmed, Belli concedes in tears and flees"
+          "label": "Vis forces Belli into a high-stakes Foundation match, wagering his factional allegiance against her Class Three spot; he wins, takes her seat, and she flees in tears"
         }
       ]
     },
@@ -1163,12 +1107,8 @@
       ],
       "annotations": [
         {
-          "type": "action",
-          "label": "The sight of Belli’s fresh corpse almost dooms him, but he narrowly escapes through the exit as the Remnants rage at the threshold"
-        },
-        {
           "type": "death",
-          "label": "Upon entering the Labyrinth, Vis counts seconds and executes his practiced sequence, adjusting passages to redirect each Remnant’s path"
+          "label": "Vis finds Belli’s fresh corpse inside the Labyrinth"
         }
       ]
     },
@@ -1188,10 +1128,6 @@
         {
           "type": "action",
           "label": "Fleeing, Vis escapes the Labyrinth, only to be hunted by eyeless warriors"
-        },
-        {
-          "type": "death",
-          "label": "Vis survives by targeting neck breaks; he kills two but suffers a deep bite to his left arm"
         }
       ]
     },
@@ -1215,15 +1151,7 @@
       ],
       "annotations": [
         {
-          "type": "death",
-          "label": "Vis and Aequa discover a mass grave of murdered safety teams, confirming an imminent, coordinated attack during the Iudicium"
-        },
-        {
           "type": "reveal",
-          "label": "Vis and Aequa discover a mass grave of murdered safety teams, confirming an imminent, coordinated attack during the Iudicium"
-        },
-        {
-          "type": "action",
           "label": "Vis and Aequa discover a mass grave of murdered safety teams, confirming an imminent, coordinated attack during the Iudicium"
         }
       ]
@@ -1237,10 +1165,6 @@
         "Res"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "Emissa’s decoy plan is exposed and her diversions are brutally killed"
-        },
         {
           "type": "reveal",
           "label": "A scarred Anguis operative reveals Military’s larger scheme to exploit the massacre, then coerces Vis into pursuing the Heart by threatening someone important to him"
@@ -1268,7 +1192,7 @@
       "annotations": [
         {
           "type": "death",
-          "label": "He finds Callidus mortally wounded by an Anguis and carries him back, but Callidus dies"
+          "label": "Vis finds Callidus mortally wounded by an Anguis and carries him back, but Callidus dies"
         },
         {
           "type": "breakthrough",
@@ -1300,10 +1224,6 @@
         {
           "type": "reveal",
           "label": "He confronts Veridius for sacrificing students, then discovers a childhood ship marked \"Diago,\" echoing a dream of his father’s counsel"
-        },
-        {
-          "type": "death",
-          "label": "Pressed for honesty, Vis admits he ran the Labyrinth in the ruins and that the writing on his arm helped him escape; he tells Veridius Belli is dead"
         },
         {
           "type": "action",
@@ -1342,10 +1262,6 @@
         {
           "type": "reveal",
           "label": "Vis wakes badly injured on a small boat, discovers that his left arm is gone, and realizes he is in the hands of strangers whose language he does not understand"
-        },
-        {
-          "type": "death",
-          "label": "The white-cloaked Cian, whom Vis vaguely recognizes from the mountaintop rotunda, secretly reveals that powerful figures called Ruarc and the Grove want Vis killed because they fear he is a Traveller"
         },
         {
           "type": "action",
@@ -1413,7 +1329,7 @@
       "annotations": [
         {
           "type": "death",
-          "label": "Caeror proves that Djedef has been turned into a trap by the Concurrence, kills him to prevent future danger, and forces Vis to confront how deeply Ka controls Qabr through altered iunctii and the terrifying Gleaners"
+          "label": "Caeror proves that Djedef has been turned into a trap by the Concurrence, and kills him to prevent future danger"
         },
         {
           "type": "reveal",
@@ -1441,10 +1357,6 @@
         {
           "type": "reveal",
           "label": "During their flight, Cian reveals that Ruarc has corrupted the Grove into murdering people like Vis who arrive through the white temple, giving Vis his clearest explanation yet of why the draoi want him dead"
-        },
-        {
-          "type": "death",
-          "label": "According to Cian, the Grove now secretly kills anyone who arrives at the white temple as Vis did, acting out of fear and at Ruarc’s urging rather than justice or sacred duty"
         }
       ]
     },
@@ -1468,10 +1380,6 @@
         {
           "type": "reveal",
           "label": "Vis exposes himself at the window to lure in a lone warrior, while the farmer waits behind the door with a scythe"
-        },
-        {
-          "type": "death",
-          "label": "The attack partly fails: the farmer wounds the intruder's arm, but the warrior kills him with a spear"
         }
       ]
     },
@@ -1506,10 +1414,6 @@
         {
           "type": "action",
           "label": "Before anyone can understand why, Lanistia suddenly massacres guards and attacks Vis while repeating \"Complete the journey, warrior,\" forcing Ulciscor to restrain her and turning a public ceremony into a shocking crisis"
-        },
-        {
-          "type": "death",
-          "label": "At that moment, Lanistia abruptly moves past the guards, kills two of them with terrifying speed, and advances on Vis while repeating, again and again, \"Complete the journey, warrior.\""
         }
       ]
     },
@@ -1559,10 +1463,6 @@
         {
           "type": "action",
           "label": "Vis wakes badly wounded in a small hut, remembering the village attack, Cian's death, and the spear wound that nearly killed him"
-        },
-        {
-          "type": "death",
-          "label": "When Gráinne asks his name, Vis chooses to call himself \"Diago,\" deciding to let the world think he is dead and to accept the possibility of a life outside the Hierarchy"
         },
         {
           "type": "reveal",
@@ -1618,10 +1518,6 @@
       ],
       "annotations": [
         {
-          "type": "death",
-          "label": "Emissa finally explains that she attacked Vis because she believed his altered blood marked him as one of the undead Iunctii, then warns him that an official blood test before Placement will expose him and lead to his execution"
-        },
-        {
           "type": "reveal",
           "label": "Emissa finally explains that she attacked Vis because she believed his altered blood marked him as one of the undead Iunctii, then warns him that an official blood test before Placement will expose him and lead to his execution"
         },
@@ -1644,10 +1540,6 @@
         "Luceum"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "That night druid Lir tracks down Cian’s staff, attacks Vis, and nearly has him killed"
-        },
         {
           "type": "action",
           "label": "That night druid Lir tracks down Cian’s staff, attacks Vis, and nearly has him killed"
@@ -1774,10 +1666,6 @@
       ],
       "annotations": [
         {
-          "type": "death",
-          "label": "Vis, still posing as Deaglán, arrives at Caer Áras and learns that carrying Cian’s staff may get him executed amid deeper conflict among the druids"
-        },
-        {
           "type": "action",
           "label": "While confined in a bare hut, Vis considers escape but rejects it because he still believes these people may be his best refuge"
         },
@@ -1799,10 +1687,6 @@
         {
           "type": "action",
           "label": "Faced with the option of sacrificing a prisoner to create an escape, Vis instead frees Ahmose and orders Duodecim to become the distraction, even though that costs him his covert asset and increases the danger of discovery"
-        },
-        {
-          "type": "death",
-          "label": "After Duodecim dies covering their flight, Vis forces open a mutalis gate and finally enters Duat"
         }
       ]
     },
@@ -1924,10 +1808,6 @@
         {
           "type": "reveal",
           "label": "Vis and Ahmose are taken through hidden passages beneath the Infernis, where they discover a secret waterworks system and confirm that Netiqret knows routes far beyond Vis’s own map of Duat"
-        },
-        {
-          "type": "death",
-          "label": "Netiqret then traps and interrogates them, and Ahmose reveals that she is a mesektet, an assassin who kills westerners so their bodies can be reassigned as servants after death"
         },
         {
           "type": "action",
@@ -2065,10 +1945,6 @@
         {
           "type": "reveal",
           "label": "He recognizes the activation phrase Vis used and reveals that Lanistia spoke the same words seven years earlier after the Aurora Columnae and during Caeror’s Iudicium"
-        },
-        {
-          "type": "death",
-          "label": "If the process continues too long, however, the person is absorbed, dies, and becomes a iunctus"
         }
       ]
     },
@@ -2103,10 +1979,6 @@
         {
           "type": "reveal",
           "label": "The aftermath hardens the uneasy bargain between Vis and Netiqret: Vis extracts a promise that Ahmose will not be harmed again, while Netiqret reveals that the Nomarch is too protected and too vital to Duat to be destroyed outright"
-        },
-        {
-          "type": "death",
-          "label": "Vis kills one by severing his hand and driving the sabre through his mouth, then hacks down the second as it grapples with the enthralled iunctus"
         }
       ]
     },
@@ -2126,10 +1998,6 @@
         {
           "type": "reveal",
           "label": "Because Caeror knew the same truths and still died, Veridius concludes that Vis's best chance is to stay hidden, reveal his condition to no one else, and wait"
-        },
-        {
-          "type": "death",
-          "label": "Livia reads the documents, reacts with affectionate sorrow, and asks who was responsible; Vis says it no longer matters because that person is dead"
         }
       ]
     },
@@ -2164,10 +2032,6 @@
         {
           "type": "action",
           "label": "Realizing they are scouts, Vis abandons the chase and runs back to warn the others"
-        },
-        {
-          "type": "death",
-          "label": "Vis tries to question him about Gallchobhar, but the captive refuses to cooperate, so Vis kills him cleanly"
         }
       ]
     },
@@ -2180,10 +2044,6 @@
         "Luceum"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "After the fight, Tara's band hides for the night, and Vis admits that the distant rider who warned him felt like his executed father"
-        },
         {
           "type": "reveal",
           "label": "After the fight, Tara's band hides for the night, and Vis admits that the distant rider who warned him felt like his executed father"
@@ -2326,10 +2186,6 @@
       ],
       "annotations": [
         {
-          "type": "death",
-          "label": "Forced to flee, Vis kills an Overseer in the Infernis and escapes injured, while his mission against Ka becomes far more dangerous because secrecy is gone"
-        },
-        {
           "type": "action",
           "label": "Forced to flee, Vis kills an Overseer in the Infernis and escapes injured, while his mission against Ka becomes far more dangerous because secrecy is gone"
         },
@@ -2371,10 +2227,6 @@
         "Res"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "The confrontation reveals that Vis’s family was murdered because his father learned too much about the Cataclysms and a feared weapon"
-        },
         {
           "type": "reveal",
           "label": "The confrontation reveals that Vis’s family was murdered because his father learned too much about the Cataclysms and a feared weapon"
@@ -2424,10 +2276,6 @@
         {
           "type": "reveal",
           "label": "He then makes his real offer: if Vis keeps acting as the masked, metal-armed figure, Ostius will hide Vis’s identity, protect his friends from guilt by association, and occasionally feed him information"
-        },
-        {
-          "type": "death",
-          "label": "Vis runs through increasingly tense streets, realizing that Military will interpret the murders as a Senate attack and answer with immediate retaliation"
         }
       ]
     },
@@ -2455,10 +2303,6 @@
         "Luceum"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "Deaglán is reunited with his supposedly dead father, who reveals that the Catenan Military revived him after execution with a Vitaerium"
-        },
         {
           "type": "reveal",
           "label": "Deaglán is reunited with his supposedly dead father, who reveals that the Catenan Military revived him after execution with a Vitaerium"
@@ -2597,7 +2441,7 @@
       "annotations": [
         {
           "type": "death",
-          "label": "Gallchobhar kills Lir when the druid refuses to explain Deaglan's strange passage through Fornax, then uses a brooch from Ruarc to inflict agony and cut Deaglan off from sensing his father"
+          "label": "Gallchobhar kills Lir when the druid refuses to explain Deaglan's strange passage through Fornax"
         },
         {
           "type": "action",
@@ -2618,10 +2462,6 @@
         "Res"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "Indol's revelation that Scipio is imprisoned and that Sapper prisoners may be killed during the attack pushes Vis and Aequa toward an urgent rescue, while news that Emissa is with Corenius sharpens the personal stakes"
-        },
         {
           "type": "action",
           "label": "Indol's revelation that Scipio is imprisoned and that Sapper prisoners may be killed during the attack pushes Vis and Aequa toward an urgent rescue, while news that Emissa is with Corenius sharpens the personal stakes"
@@ -2701,10 +2541,6 @@
         {
           "type": "reveal",
           "label": "As Vis helps Ulciscor upward, Ulciscor admits shame over forcing Vis into the Labyrinth, and Vis rescues him anyway"
-        },
-        {
-          "type": "death",
-          "label": "The reunion between Lanistia and Ulciscor is brief and dryly familiar, but when the three reach the guardroom, Lanistia abruptly kills the two Septimii guards who had agreed to let them leave"
         }
       ]
     },
@@ -2717,10 +2553,6 @@
         "Obiteum"
       ],
       "annotations": [
-        {
-          "type": "death",
-          "label": "An iunctus notices him, the nearby Overseer identifies the threat, and Vis kills the Overseer with the crook in a grotesque instant, horrifying the workers and confirming the weapons’ devastating power"
-        }
       ]
     },
     {
@@ -2775,10 +2607,6 @@
           "label": "On the way back, Netiqret reveals that Kiya was taken by the Nomarch as a child, returned damaged through a hidden plot, and became the reason Netiqret spent decades working against Ka's system"
         },
         {
-          "type": "death",
-          "label": "Priests took Kiya as a child for a surrogate system tied to the Nomarch; later, a controlled iunctus offered Netiqret a way to get Kiya back if Netiqret murdered a priest and disguised the death"
-        },
-        {
           "type": "action",
           "label": "At the temple, Overseers guard the sealed obsidian doors and tell Netiqret that the temple has been evacuated and closed, leaving Vis unable to force entry without drawing immediate attack"
         }
@@ -2800,10 +2628,6 @@
         {
           "type": "reveal",
           "label": "To stop Eidhin from sacrificing himself, Vis reveals his true identity as Diago of Suus and confesses how fear let the Anguis use him"
-        },
-        {
-          "type": "death",
-          "label": "Moving through alleys to avoid stronger enemy groups, Vis forces himself to ignore people he cannot save, kills isolated attackers when necessary, and presses toward the Will marker he placed on Eidhin's armband"
         }
       ]
     },
@@ -2819,10 +2643,6 @@
         {
           "type": "reveal",
           "label": "With Kiya's interference buying him time, Vis reaches the heart of Ka's pyramid and discovers that Ka is not an active tyrant on a throne but a catatonic man lying on a powered ritual table"
-        },
-        {
-          "type": "death",
-          "label": "Vis hesitates because he had expected a confrontation and wants answers, not an execution"
         }
       ]
     },
