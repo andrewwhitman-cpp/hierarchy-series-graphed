@@ -711,48 +711,37 @@ export function WorldLineChart({ chapters }: Props) {
             );
           })}
 
-          {/* Axis bottom: sparse chapter ticks. When zoomed in, show them more
-              densely so a user can orient themselves within a book. */}
-          {(() => {
-            const strideBase = Math.max(
-              1,
-              Math.round(
-                (chapters.length / 40) / Math.max(1, Math.log2(zoom + 1))
-              )
+          {/* Axis bottom: show the first chapter of each book and every 5th
+              chapter within that book. */}
+          {chapters.map((_ch, i) => {
+            const bookLocal =
+              forkIdx > 0 && i >= forkIdx ? i - forkIdx + 1 : i + 1;
+            const show = bookLocal === 1 || bookLocal % 5 === 0;
+            if (!show) return null;
+            const xi = xFor(i);
+            if (xi < PAD_L - 1 || xi > VB_W - PAD_R + 1) return null;
+            return (
+              <g key={`tick-${i}`}>
+                <line
+                  x1={xi}
+                  x2={xi}
+                  y1={PLOT_BOTTOM}
+                  y2={PLOT_BOTTOM + 4}
+                  stroke="var(--axis-tick)"
+                  strokeWidth={1}
+                />
+                <text
+                  x={xi}
+                  y={PLOT_BOTTOM + 14}
+                  textAnchor="middle"
+                  fill="var(--text-muted)"
+                  fontSize={10}
+                >
+                  {bookLocal}
+                </text>
+              </g>
             );
-            return chapters.map((_ch, i) => {
-              const show =
-                i === 0 ||
-                i === chapters.length - 1 ||
-                i === forkIdx ||
-                (i + 1) % strideBase === 0;
-              if (!show) return null;
-              const xi = xFor(i);
-              // Drop ticks whose X falls outside the plot region.
-              if (xi < PAD_L - 1 || xi > VB_W - PAD_R + 1) return null;
-              return (
-                <g key={`tick-${i}`}>
-                  <line
-                    x1={xi}
-                    x2={xi}
-                    y1={PLOT_BOTTOM}
-                    y2={PLOT_BOTTOM + 4}
-                    stroke="var(--axis-tick)"
-                    strokeWidth={1}
-                  />
-                  <text
-                    x={xi}
-                    y={PLOT_BOTTOM + 14}
-                    textAnchor="middle"
-                    fill="var(--text-muted)"
-                    fontSize={10}
-                  >
-                    {i + 1}
-                  </text>
-                </g>
-              );
-            });
-          })()}
+          })}
         </g>
 
         {/* Left-side RES label mirrors the right-side gutter for Book I's single track */}
