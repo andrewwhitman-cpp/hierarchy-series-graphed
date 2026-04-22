@@ -521,44 +521,48 @@ export function WorldLineChart({ chapters }: Props) {
 
   return (
     <div className="chart-wrap">
-      <div className="chart-controls" role="toolbar" aria-label="Timeline zoom">
-        <button
-          type="button"
-          className="chart-ctrl-btn"
-          onClick={zoomOut}
-          disabled={zoom <= MIN_ZOOM + 0.001}
-          aria-label="Zoom out"
-          title="Zoom out"
-        >
-          −
-        </button>
-        <span className="chart-zoom-indicator" aria-live="polite">
-          {Math.round(zoom * 100)}%
-        </span>
-        <button
-          type="button"
-          className="chart-ctrl-btn"
-          onClick={zoomIn}
-          disabled={zoom >= MAX_ZOOM - 0.001}
-          aria-label="Zoom in"
-          title="Zoom in"
-        >
-          +
-        </button>
-        <button
-          type="button"
-          className="chart-ctrl-btn chart-ctrl-reset"
-          onClick={resetView}
-          disabled={!isZoomed && panOffset === 0}
-          aria-label="Reset view"
-          title="Reset view"
-        >
-          Reset
-        </button>
+      <div className="chart-toolbar">
+        <div className="chart-controls" role="toolbar" aria-label="Timeline zoom">
+          <button
+            type="button"
+            className="chart-ctrl-btn"
+            onClick={zoomOut}
+            disabled={zoom <= MIN_ZOOM + 0.001}
+            aria-label="Zoom out"
+            title="Zoom out"
+          >
+            −
+          </button>
+          <span className="chart-zoom-indicator" aria-live="polite">
+            {Math.round(zoom * 100)}%
+          </span>
+          <button
+            type="button"
+            className="chart-ctrl-btn"
+            onClick={zoomIn}
+            disabled={zoom >= MAX_ZOOM - 0.001}
+            aria-label="Zoom in"
+            title="Zoom in"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            className="chart-ctrl-btn chart-ctrl-reset"
+            onClick={resetView}
+            disabled={!isZoomed && panOffset === 0}
+            aria-label="Reset view"
+            title="Reset view"
+          >
+            Reset
+          </button>
+        </div>
       </div>
 
+      <div className="chart-svg-frame">
       <svg
         ref={svgRef}
+        id="world-line-chart"
         className={`world-line-chart${isZoomed ? " is-zoomed" : ""}${
           dragging ? " is-dragging" : ""
         }`}
@@ -889,32 +893,6 @@ export function WorldLineChart({ chapters }: Props) {
         </g>
       </svg>
 
-      {isZoomed ? (
-        <div
-          className="chart-scrollbar"
-          ref={trackRef}
-          onPointerDown={onTrackPointerDown}
-          role="scrollbar"
-          aria-controls="world-line-chart"
-          aria-orientation="horizontal"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(panFrac * 100)}
-        >
-          <div
-            className="chart-scrollbar-thumb"
-            style={{
-              left: `${thumbLeftPct}%`,
-              width: `${thumbWidthPct}%`,
-            }}
-            onPointerDown={onThumbPointerDown}
-            onPointerMove={onThumbPointerMove}
-            onPointerUp={onThumbPointerUp}
-            onPointerCancel={onThumbPointerUp}
-          />
-        </div>
-      ) : null}
-
       {hover && hoveredAnnotation && hoveredChapter ? (
         (() => {
           // Flip tooltip below the marker when the marker is high in the annotation
@@ -957,6 +935,33 @@ export function WorldLineChart({ chapters }: Props) {
             </div>
           );
         })()
+      ) : null}
+      </div>
+
+      {isZoomed ? (
+        <div
+          className="chart-scrollbar"
+          ref={trackRef}
+          onPointerDown={onTrackPointerDown}
+          role="scrollbar"
+          aria-controls="world-line-chart"
+          aria-orientation="horizontal"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(panFrac * 100)}
+        >
+          <div
+            className="chart-scrollbar-thumb"
+            style={{
+              left: `${thumbLeftPct}%`,
+              width: `${thumbWidthPct}%`,
+            }}
+            onPointerDown={onThumbPointerDown}
+            onPointerMove={onThumbPointerMove}
+            onPointerUp={onThumbPointerUp}
+            onPointerCancel={onThumbPointerUp}
+          />
+        </div>
       ) : null}
     </div>
   );
